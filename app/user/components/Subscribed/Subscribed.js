@@ -1,14 +1,27 @@
-import Accounts from "./Accounts";
-import Articles from "./Articles";
+import React from "react";
+import Accounts from "./components/Accounts";
+import Articles from "./components/Articles";
+import NText from "@/app/Components/Text/n-text";
+import { UserContext } from "../../context/userContext";
+
 
 function Subscribed() {
+    const{subscribedPage ,setSubscribedPage}= React.useContext(UserContext)
 
-    const [pageNumber,setPageNumber] = React.useState(1)
+   
+
+    function changePage(x){
+        setSubscribedPage(x)
+    }
     return ( 
 
         <div>
+            <div className="flex flex-row justify-center -mt-4 ">
+                <NText data={{active:subscribedPage == 1 ? true : false, arrow:false ,text:"Accounts", }} handleClick={()=>changePage(1)}/>
+                <NText data={{active:subscribedPage == 2 ? true : false, arrow:false ,text:"Articles"}} handleClick={()=>changePage(2)}/>
+            </div>
             
-            {pageNumber == 1 ? <Accounts/> : Articles}
+            {subscribedPage == 1 ? <Accounts/> : <Articles/>}
 
         </div>
 

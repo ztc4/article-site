@@ -1,11 +1,8 @@
 import React from "react";
-function HomePage() {
-
-    
+function Articles() {
     return ( 
         <div></div>
-
      );
 }
 
-export default HomePage;
+export default Articles;

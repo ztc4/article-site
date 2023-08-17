@@ -1,5 +1,5 @@
 function Accounts() {
-    return (  );
+    return ( <div></div> );
 }
 
 export default Accounts;

@@ -12,12 +12,12 @@ describe("button render correctly",()=>{
     
         let data = {
             text:"Submit",
-            size: small,
-            name: "Submit"
-           
+            size: "submit",
+            name: "submit",
+            disabled: false
         }
 
-        cy.mount(<Button size={"small"} clickFunction={handleClick} text={""}/>)
+        cy.mount(<Button data={data} handleClick={handleClick} />)
 
         cy.get("button").contains(data.text);
 

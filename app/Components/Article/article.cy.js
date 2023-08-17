@@ -8,7 +8,7 @@ describe("article test",()=>{
             author: "Zachary Coats",
             posterImage:"",
             timePosted:"",
-            category: "",
+            category: "Gaming",
             article: [
                 {type:"paragraph",
                 paragraph: "The first paragraph in the sentence"},

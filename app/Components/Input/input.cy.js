@@ -6,11 +6,13 @@ describe("Test your input",()=>{
    it("test your input",()=>{ 
     let input = {
         placeholder: "Enter Username",
-        handleChange: (e)=>{},
+        type:"text",
+        id:"username",
         name:"username"
     }
+   let handleChange = (e)=>{};
     
-    cy.mount(<Input data={input}/>)
+    cy.mount(<Input data={input} handleChange={handleChange}/>)
 
     let username = cy.get('#input');
     username.type("ztc4");

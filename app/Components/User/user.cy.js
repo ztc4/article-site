@@ -9,7 +9,8 @@ const { default: User } = require("./user")
             avatar: "",
             subscribers: 0,
             lastPost:"",
-            articles: 0
+            articles: 0,
+            category:"gaming"
         }
         cy.mount(<User data={user}/>)
 

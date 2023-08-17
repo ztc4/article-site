@@ -1,17 +1,17 @@
-import { ArrowUpward } from "@mui/icons-material";
+import { ArrowUpward, KeyboardArrowUp } from "@mui/icons-material";
 
-function nText({data}) {
+function NText({data, handleClick}) {
 
 
     return ( 
-        <div className="flex flex-col justify-center">
-            <h4 className={` navigate-text ${data.active && "drop-shadow"}`}>
+        <div className="flex m-2 cursor-pointer hover:drop-shadow hover:scale-105 flex-col" onClick={handleClick}>
+            <h4 className={` navigate-text ${data.active && "drop-shadow scale-110 font-semibold"} ${!data.arrow&& data.active && "underline"}`}>
                 {data.text}
             </h4>
-           {data.active && data.arrow && <ArrowUpward/>}
+           {data.active && data.arrow && <KeyboardArrowUp className="self-center"/>}
             
         </div>
      );
 }
 
-export default nText;
+export default NText;
