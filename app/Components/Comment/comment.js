@@ -12,7 +12,8 @@ function Comment({data}) {
         <div className="flex flex-row p-1 card w-full sm:w-80 " onClick={handleClick}>
             <div className=" w-2/12 justify-center">
                 {data.avatar !== "" ? 
-                <Image width={100} height={100}  src="/r" alt="article image"/>: 
+                <Image width={100} height={100}  
+                src={`http://localhost:5000/users/${data.avatar}/avatar`} alt="article image"/>: 
                 <div className=" border bg-red-600 rounded-full h-12 w-12"/>}
                 
             </div>

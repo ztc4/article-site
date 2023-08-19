@@ -1,3 +1,4 @@
+"use client"
 import { SearchOffOutlined, SearchOutlined } from "@mui/icons-material";
 import React from "react";
 
@@ -8,6 +9,8 @@ function Search({data}) {
              type='text'
              placeholder={data.placeholder}
              className="input"
+             value={data.value}
+             onChange={(e)=>data.handleChange(e)}
              
              >
             </input>
