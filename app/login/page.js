@@ -3,15 +3,18 @@ import React from "react";
 import Button from "../Components/Button/button";
 import Input from "../Components/Input/input";
 import Link from "next/link";
+import axios from "axios";
+import cookieCutter from "cookie-cutter"
+import { useRouter } from "next/navigation";
+
 
 
 
 function Login() {
 
-    function ButtonHandleClick(e){
-        e.preventDefault()
-        console.log("clicked")
-    }
+    const { push } = useRouter()
+
+
     const [login,setLogin] = React.useState({
         username:"",
         password:""
@@ -28,6 +31,24 @@ function Login() {
 
     }
 
+    async function ButtonHandleClick(){
+        
+        const formData = new FormData()
+        formData.append("username",login.username)
+        formData.append("password",login.password)
+    
+        await axios.put(
+            `http://localhost:5000/login`,{
+             username:login.username,
+               password:login.password
+            },{
+                withCredentials: true
+            }
+
+        )
+        .then(
+            res => push("user"))
+    }
     let userNameData = {
         placeholder: "Enter Username", 
         name:"username",

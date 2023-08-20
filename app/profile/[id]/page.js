@@ -18,7 +18,9 @@ async function getProfile(id){
 }
 
 async function Profile(query) {
+    console.log(query.params)
     let data = await getProfile(query.params.id)
+    console.log(3,data)
 
  
     
@@ -33,6 +35,7 @@ async function Profile(query) {
                             className=" color4 drop-shadow h-16 w-16 rounded-full "
                             src={`http://localhost:5000/users/${data._id}/avatar`} 
                             width={50} height={50} alt="News article poster Image"
+                            loading="lazy"
                             />
 
                         <div className="flex flex-col gap-1 px-1">
@@ -43,9 +46,9 @@ async function Profile(query) {
                             <p className="info-text pl-2">Posted {data.postedArticle} Articles</p>
                                                             
                         </div>
-                        <SubscribeButton/>
+                        <SubscribeButton username={data.username}/>
                     </div>
-                    <div className="pl-3 sm:ml-24 pt-8 flex flex-col bg-gray-200 rounded-lg">
+                    <div className=" sm:ml-24 p-12 flex flex-col bg-gray-200 rounded-lg">
                         <h5 className="text-3xl ">Pinned Article</h5>
                     </div>
                 </div>
