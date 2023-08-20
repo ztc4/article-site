@@ -10,8 +10,8 @@ function AddArticles() {
     let title={
             placeholder: "Enter Article title", 
             name:"title",
-            type:"text",
-            id:"username",
+            type:"textbox",
+            id:"title",
             value:newArticle.title
 
     }
@@ -43,7 +43,10 @@ function AddArticles() {
 
             const formData = new FormData();
             formData.append("upload",image1)
-            axios.post("http://localhost:5000/upload", formData).then(res =>{
+            formData.append("title",newArticle.title)
+            axios.post("http://localhost:5000/upload", formData,{
+                withCredentials: true
+            }).then(res =>{
                 console.log(res)
             })
 
@@ -53,10 +56,23 @@ function AddArticles() {
 
 
     return ( 
-        <div>
+        <div className="px-4 py-4 sm:p-8 mx-auto gap-4 rounded-2xl drop-shadow-lg w-full sm:w-8/12 bg-slate-300 flex flex-col">
             <Input data={title} handleChange={handleChange}/>
             <Input data={image} handleChange={uploadImage}/>
-            <button onClick={sendImage}> send Image</button>
+            <textarea 
+            onChange={(e)=>setNewArticle(current => ({
+                ...current,
+                paragraph: e.target.value}))} 
+            className=" h-28" 
+            autoComplete="on" 
+            cols={8}/>
+            <button onClick={(e)=>setNewArticle(current => ({
+                ...current,
+                article: current.article.push(currentParagraph)
+            }))} className="bg-gray-200 rounded-full p-4"> add paragraph</button>
+            {newArticle.article.map(current => <p key={current}>{current}</p>)}
+            
+            <button onClick={sendImage} className="bg-gray-200 rounded-full p-4"> send Image</button>
             
             
 

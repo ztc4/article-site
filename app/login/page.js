@@ -31,13 +31,13 @@ function Login() {
 
     }
 
-    async function ButtonHandleClick(){
+    function ButtonHandleClick(){
         
         const formData = new FormData()
         formData.append("username",login.username)
         formData.append("password",login.password)
     
-        await axios.put(
+        axios.put(
             `http://localhost:5000/login`,{
              username:login.username,
                password:login.password
@@ -46,8 +46,9 @@ function Login() {
             }
 
         )
+        .catch( res => alert("couldn't login"))
         .then(
-            res => push("user"))
+            res =>{push("user")})
     }
     let userNameData = {
         placeholder: "Enter Username", 

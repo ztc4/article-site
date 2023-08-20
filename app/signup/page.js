@@ -20,7 +20,7 @@ function Signup() {
         },{
             withCredentials: true
         })
-        .then(res => router.push("login") )
+        .then(res => router.push("user") )
         .catch(error => alert(error))
       
 

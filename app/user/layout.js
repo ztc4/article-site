@@ -1,11 +1,15 @@
 "use client"
 
+import axios from "axios";
 import Search from "../Components/Search/search";
 import NText from "../Components/Text/n-text";
 import { UserContext } from "./context/userContext";
 import React from "react";
+import { useRouter } from "next/navigation";
+
 
 function Layout({children}) {
+    const router = useRouter()
 
     const [page,setPage] = React.useState(1)
     const [subscribedPage, setSubscribedPage] = React.useState(1)
@@ -15,7 +19,8 @@ function Layout({children}) {
         title:"",
         posterImage:undefined,
         category:"",
-        article:[]
+        article:[],
+        paragraph:""
     })
 
 
@@ -30,13 +35,13 @@ function Layout({children}) {
 
         //Subscribed
         subscribedArticles:"",
-        subscribedArticlesSkip:"",
+        subscribedArticlesSkip:0,
         subscribedUsers:"",
-        subscribedUsersSkip:"",
+        subscribedUsersSkip:0,
 
         //all search
         mainSearch: "",
-        mainSearchSkip: "",
+        mainSearchSkip: 0,
 
     })
 
@@ -52,13 +57,84 @@ function Layout({children}) {
         mainSearch: []
       
     })
-    // React.useEffect()
-    function changePage(x){
-        setPage(x)
+    function DataChange(key,data){
+
+        setData(current =>({
+            ...current,
+            [key]: current[key].concat(data)
+        }))
+
+    }
+    console.log(data)
+    //FETCH DATA RELATED TO ARTICLES
+    async function LikedArticles(search = "",skip = 0) {
+        await axios.get(`http://localhost:5000/user/articles/liked?search${search}&skip=${skip}`,{
+            withCredentials:true
+        })
+        .then(res => DataChange("likedArticles", res.data))
+    }
+
+    async function PostedArticles(search = "",skip = 0) {
+        await axios.get(`http://localhost:5000/user/articles/posted?search${search}&skip=${skip}`,{
+            withCredentials: true
+        })
+        .then(res => {console.log(res);DataChange("postedArticle", res.data)})
+    }
+    async function SubscribedArticle(search = "",skip = 0) {
+       await axios.get(`http://localhost:5000/user/articles/subscribed?search${search}&skip=${skip}`,{
+            withCredentials:true
+        })
+        .then(res => DataChange("subscribedArticle", res.data))
+    }
+
+    //FETCH DATA RELATED TO USERS
+    async function GetSubscribedUsers(search = "",skip = 0) {
+         await axios.get(`http://localhost:5000/user/users/subscribed?search=${search}&skip=${skip}`,{
+            withCredentials: true
+         })
+        .then(res => DataChange("subscribedUsers", res.data))
+    
+    }
+    async function GetSubscribers(search = "",skip = 0){
+         await axios.get(`http://localhost:5000/user/users/subscribers?search=${search}&skip=${skip}`,{
+            withCredentials:true
+        })
+        .then(res => DataChange("subscribers", res.data))
+        
+    
     }
 
 
 
+    React.useEffect(()=>{
+        console.log("checking login")
+        axios.get(`http://localhost:5000/login/check`,
+        {withCredentials: true})
+        .then( res => {res})
+        .catch(error => {alert("You aren't logged... taking you to login screen"); router.push('login')})
+
+        //set liked post first 10
+        LikedArticles()
+
+        //set subscribed article first 10
+        SubscribedArticle()
+
+
+        //set first posted first 10
+        PostedArticles()
+
+        // GET USERS
+        GetSubscribers()
+        GetSubscribedUsers()
+
+
+    },[])
+
+
+
+    function changePage(x){
+        setPage(x)
+    }
     function decideWhichSearch(e){
         let placeholder;
         let changeFunction;
@@ -129,7 +205,7 @@ function Layout({children}) {
         }
         return {placeholder, changeFunction, value}
     }
-    let searchOptions =  decideWhichSearch()
+    let searchOptions = decideWhichSearch()
     
 
 
@@ -137,7 +213,7 @@ function Layout({children}) {
         <UserContext.Provider value={{
             page,subscribedPage,setSubscribedPage,myPage
             ,setMyPage,newArticle,setNewArticle,
-            search,setSearch
+            search,setSearch,data
             }}>
             <div className=" w-screen">
                 <div className="flex flex-row items-center px-8 h-16 color4">
