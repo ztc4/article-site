@@ -4,11 +4,26 @@ import React from "react";
 import Button from "../Components/Button/button";
 import Input from "../Components/Input/input";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 function Signup() {
-    function ButtonHandleClick(e){
-        e.preventDefault()
-        console.log("clicked")
+    const router = useRouter()
+    function ButtonHandleClick(){
+        axios.post(`http://localhost:5000/signup`,{
+            firstname:signup.fname,
+            lastname:signup.lname,
+            age:signup.age,
+            username:signup.username,
+            email:signup.email,
+            password:signup.password
+        },{
+            withCredentials: true
+        })
+        .then(res => router.push("login") )
+        .catch(error => alert(error))
+      
+
     }
     const [signup,setSignup] = React.useState({
         username:"",
