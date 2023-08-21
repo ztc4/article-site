@@ -18,10 +18,11 @@ function Layout({children}) {
     const [newArticle, setNewArticle] = React.useState({
         title:"",
         posterImage:undefined,
-        category:"",
+        category:"Other",
         article:[],
         paragraph:""
     })
+    console.log(newArticle)
 
 
     const [search,setSearch] = React.useState({

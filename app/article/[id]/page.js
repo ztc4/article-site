@@ -26,8 +26,9 @@ async function Article(query) {
     
     let data = await getArticle(query.params.id)
     console.log(2,data)
-    let articleText = data.articleText.map(
-        current =>   <p key={current} className="sm:text-center pl-4  font-light my-4 text-sm">{current}</p>
+    let text = data.articleText[0].split("*8^,")
+    let articleText = text.map(
+        current =>   <p key={current} className="sm:text-center pl-4  font-light my-4 text-sm">{current.replace("*8^","")}</p>
     )
     return ( 
     <div className="w-screen h-min-screen flex flex-col justify-center">
@@ -50,7 +51,7 @@ async function Article(query) {
             <div className="flex flex-row w-full justify-center gap-8 px-1">
                 <p className="info-text">Likes:{data.likes}</p>
                 <p className="info-text">Comments:{data.comments}</p>
-                <p className="info-text">Posted {Date(data.createdAt).slice(0,15)}</p>
+                <p className="info-text">Posted {data.postedArticle}</p>
             </div>
 
         <h1 className="sm:text-center pl-4 mt-8 font-semibold text-2xl leading-relaxed">{data.title}</h1>

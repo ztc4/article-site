@@ -7,10 +7,15 @@ function Articles() {
     const{data}= React.useContext(UserContext)
     let articles = data.subscribedArticle.map(current => <Article key={current._id} data={current}/>)
     return (  
-        <Container>
-            {articles}
+        <div>
+            {articles.length > 0 && <p className="mt-12 text-center">You have {"1"} articles</p>}
+            <Container>
+                
+                {articles}
+                {articles.length == 0 && <p className="mt-12">No articles posted by subscribed</p>}
 
-        </Container>
+            </Container>
+        </div>
      );
 }
 

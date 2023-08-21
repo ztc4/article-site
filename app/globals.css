@@ -57,12 +57,19 @@ body {
   
 
 }
+
 .input > input{
   background-color: transparent;
   padding-left: 16px;
   flex-grow: 1;
   outline: none;
 
+}
+
+.input >input[type="file"] {
+  width: 3px;
+  overflow: hidden;
+  
 }
 
 /*Search*/
