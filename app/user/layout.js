@@ -5,15 +5,21 @@ import Search from "../Components/Search/search";
 import NText from "../Components/Text/n-text";
 import { UserContext } from "./context/userContext";
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { CurrencyYenTwoTone, Settings } from "@mui/icons-material";
+import Image from "next/image";
 
 
 function Layout({children}) {
+
     const router = useRouter()
+    console.log(router.query)
 
     const [page,setPage] = React.useState(1)
     const [subscribedPage, setSubscribedPage] = React.useState(1)
     const [myPage, setMyPage] = React.useState(1);
+
+    //Creating new article information
  
     const [newArticle, setNewArticle] = React.useState({
         title:"",
@@ -22,30 +28,43 @@ function Layout({children}) {
         article:[],
         paragraph:""
     })
-    console.log(newArticle)
+  
 
-
+// Search Information... number of skips database should do trac
     const [search,setSearch] = React.useState({
         //My Page
+        //
         likedArticles: "",
         likedArticlesSkip: 0,
+        likedArticlesLast:"",
+        //
         postedArticles:"",
         postedArticlesSkip:0,
+        postedArticlesLast:"",
+        //
         subscribers:"",
         subscribersSkip:0,
+        subscribersLast:"",
 
         //Subscribed
         subscribedArticles:"",
         subscribedArticlesSkip:0,
+        subscribedArticlesLast:"",
+
+        //
         subscribedUsers:"",
         subscribedUsersSkip:0,
+        subscribedUsersLast:"",
 
         //all search
         mainSearch: "",
         mainSearchSkip: 0,
+        mainSearchLast:"",
 
     })
 
+
+    //Storing and Changing Data
     const [data,setData] = React.useState({
         //My Page
         likedArticles:[],
@@ -58,75 +77,155 @@ function Layout({children}) {
         mainSearch: []
       
     })
-    function DataChange(key,data){
-
+    function DataChange(key,data,lastSearch,currentSearch){
         setData(current =>({
             ...current,
-            [key]: current[key].concat(data)
+            [key]: lastSearch == currentSearch ? current[key].concat(data) : data,
         }))
 
+
     }
-    console.log(data)
     //FETCH DATA RELATED TO ARTICLES
-    async function LikedArticles(search = "",skip = 0) {
-        await axios.get(`http://localhost:5000/user/articles/liked?search${search}&skip=${skip}`,{
+    async function LikedArticles() {
+        let last = search.likedArticlesLast
+        let current = search.likedArticles
+        let skip = last == current ? search.likedArticlesSkip: 0
+        await axios.get(`http://localhost:5000/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
             withCredentials:true
         })
-        .then(res => DataChange("likedArticles", res.data))
+        .then(res => DataChange("likedArticles", res.data,search.likedArticlesLast,search.likedArticles))
+        .then(setSearch(current=>({
+            ...current,
+            likedArticlesSkip: skip + 10,
+            likedArticlesLast: search.likedArticles
+        })))
     }
 
-    async function PostedArticles(search = "",skip = 0) {
-        await axios.get(`http://localhost:5000/user/articles/posted?search${search}&skip=${skip}`,{
+    async function PostedArticles() {
+        let last = search.postedArticlesLast
+        let current = search.postedArticles
+        let skip = last == current ? search.postedArticlesSkip : 0
+        await axios.get(`http://localhost:5000/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
             withCredentials: true
         })
-        .then(res => {console.log(res);DataChange("postedArticle", res.data)})
+        .then(res => {DataChange("postedArticle", res.data,search.postedArticlesLast,search.postedArticles)})
+        .then(setSearch(current=>({
+            ...current,
+            postedArticlesSkip: skip + 10,
+            postedArticlesLast : search.postedArticles
+        })))
     }
-    async function SubscribedArticle(search = "",skip = 0) {
-       await axios.get(`http://localhost:5000/user/articles/subscribed?search${search}&skip=${skip}`,{
+    async function SubscribedArticle() {
+
+        let last = search.subscribedArticlesLast
+        let current = search.subscribedArticles
+        let skip = last == current ? search.subscribedArticles : 0
+       await axios.get(`http://localhost:5000/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
             withCredentials:true
         })
-        .then(res => DataChange("subscribedArticle", res.data))
+        .then(res => DataChange("subscribedArticle", res.data, search.subscribedArticlesLast,search.subscribedArticles))
+        .then(setSearch(current=>({
+            ...current,
+            subscribedArticlesSkip: skip + 10,
+            subscribedArticlesLast: search.subscribedArticles
+        })))
     }
 
     //FETCH DATA RELATED TO USERS
-    async function GetSubscribedUsers(search = "",skip = 0) {
-         await axios.get(`http://localhost:5000/user/users/subscribed?search=${search}&skip=${skip}`,{
+    async function GetSubscribedUsers() {
+        let last = search.subscribedUsers
+        let current = search.subscribedUsersLast
+        let skip = last == current ? search.subscribedUsersSkip : 0
+         await axios.get(`http://localhost:5000/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
             withCredentials: true
          })
-        .then(res => DataChange("subscribedUsers", res.data))
+        .then(res => DataChange("subscribedUsers", res.data,search.subscribedUsersLast, search.subscribedUsers))
+        .then(setSearch(current=>({
+            ...current,
+            subscribedUsersSkip: skip + 10,
+            subscribedUsersLast: search.subscribedUsers
+        })))
     
     }
-    async function GetSubscribers(search = "",skip = 0){
-         await axios.get(`http://localhost:5000/user/users/subscribers?search=${search}&skip=${skip}`,{
+    async function GetSubscribers(){
+        let last = search.subscribersLast
+        let current = search.subscribers
+        let skip = last == current ? search.subscribersSkip : 0
+         await axios.get(`http://localhost:5000/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
             withCredentials:true
         })
-        .then(res => DataChange("subscribers", res.data))
-        
+        .then(res => DataChange("subscribers", res.data,search.subscribersLast, search.subscribers))
+        .then(setSearch(current=>({
+            ...current,
+            subscribersSkip: skip + 10,
+            subscribersLast: search.subscribers
+        }))
+        )
     
     }
 
+    //CURRENT USER--MAINLY USED FOR SETTINGS
+    let [user,setUser] = React.useState({
+        id:"",
+        username:"",
+        category:"",
+    })
+    console.log(user)
 
-
+    //GET DATA AT BEGINNING
     React.useEffect(()=>{
         console.log("checking login")
         axios.get(`http://localhost:5000/login/check`,
         {withCredentials: true})
-        .then( res => {res})
+        .then( res => setUser({
+            id:res.data._id, 
+            username:res.data.username,
+            category: res.data.category,
+            usernameUpdated:res.data.username,
+            about:res.data.about
+            
+        }))
         .catch(error => {alert("You aren't logged... taking you to login screen"); router.push('login')})
 
-        //set liked post first 10
+        //FETCH ARTICLES FOR SETUP
         LikedArticles()
-
-        //set subscribed article first 10
         SubscribedArticle()
-
-
-        //set first posted first 10
         PostedArticles()
 
-        // GET USERS
+        // FETCH FOLLOWING AND FOLLOWERES
         GetSubscribers()
         GetSubscribedUsers()
+
+        //HAD THE SET MY DATA DUE TO UNKNOWN ERROR
+        setSearch({
+            //My Page
+            likedArticles: "",
+            likedArticlesSkip: 10,
+            likedArticlesLast:"",
+            //
+            postedArticles:"",
+            postedArticlesSkip:10,
+            postedArticlesLast:"",
+            //
+            subscribers:"",
+            subscribersSkip:0,
+            subscribersLast:"",
+    
+            //Subscribed
+            subscribedArticles:"",
+            subscribedArticlesSkip:10,
+            subscribedArticlesLast:"",
+            //
+            subscribedUsers:"",
+            subscribedUsersSkip:0,
+            subscribedUsersLast:"",
+    
+            //all search
+            mainSearch: "",
+            mainSearchSkip: 10,
+            mainSearchLast:"",
+    
+        })
 
 
     },[])
@@ -140,6 +239,7 @@ function Layout({children}) {
         let placeholder;
         let changeFunction;
         let value;
+        let handleSearch;
         
         if(page == 1){
 
@@ -157,9 +257,11 @@ function Layout({children}) {
                 case 1: placeholder ="Accounts"
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
-                    subscribedUsers: e.target.value
+                    subscribedUsers: e.target.value,
+                    subscribedUsersSkip: 0
                 }))
                 value = search.subscribedUsers
+                handleSearch= (e)=>GetSubscribedUsers()
                 
                 ;break;
                 case 2: 
@@ -167,9 +269,11 @@ function Layout({children}) {
  
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
-                    subscribedArticles: e.target.value
+                    subscribedArticles: e.target.value,
+                    subscribedArticlesSkip: 0
                 }))
-                value = search.subscribedArticles
+                value = search.subscribedArticles,
+                handleSearch= (e)=>SubscribedArticle()
                 
                 ;break;
             }
@@ -177,34 +281,41 @@ function Layout({children}) {
         }
         else if(page == 3){
             switch(myPage){
-                case 1: placeholder ="Posted"
+                case 1: placeholder ="Posted";
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
-                    postedArticles: e.target.value
-                }))
-                value = search.postedArticles
+                    postedArticles: e.target.value,
+                   
+                }));
+                value = search.postedArticles;
+                handleSearch= (e)=>PostedArticles()
+                console.log(search)
                 
                 ;break;
                 case 3: placeholder ="Subscribers"
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
-                    subscribers: e.target.value
-                }))
+                    subscribers: e.target.value,
+                    sunscribersSkip: 0
+                }));
                 value = search.subscribers
+                handleSearch= (e)=>GetSubscribers()
                 
                 ;break;
                 case 4: placeholder ="Liked"
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
-                    likedArticles: e.target.value
-                }))
+                    likedArticles: e.target.value,
+                    likedArticlesSkip: 0
+                }));
                 value = search.likedArticles
+                handleSearch= (e)=>LikedArticles()
                 
                 ;break;
             }
 
         }
-        return {placeholder, changeFunction, value}
+        return {placeholder, changeFunction, value, handleSearch}
     }
     let searchOptions = decideWhichSearch()
     
@@ -214,23 +325,41 @@ function Layout({children}) {
         <UserContext.Provider value={{
             page,subscribedPage,setSubscribedPage,myPage
             ,setMyPage,newArticle,setNewArticle,
-            search,setSearch,data
+            search,setSearch,data,
+            //Fetch functions
+            LikedArticles,
+            SubscribedArticle,
+            PostedArticles,
+
+            GetSubscribers,
+            GetSubscribedUsers,
+            //settings
+            user,
+            setUser
             }}>
             <div className=" w-screen">
-                <div className="flex flex-row items-center px-8 h-16 color4">
-                   {searchOptions.value == undefined? ""  :<Search 
+                <div className="flex gap-3 flex-row items-center px-8 h-16 color4">
+                {data.avatar !== ""  && !data? 
+                    <Image width={50} height={50} className="border rounded-full" src="/r" alt="article image"/>: 
+                    <div className=" border bg-red-600 rounded-full h-12 w-12"/>}
+                   
+                   {searchOptions.placeholder?
+                    
+                   <Search 
                     data={{
                         placeholder: `Search by ${searchOptions.placeholder}`,
                         value:searchOptions.value,
-                        handleChange: searchOptions.changeFunction
+                        handleChange: searchOptions.changeFunction,
+                        handleSearch : searchOptions.handleSearch
                     
-                    }} 
-                    
-                    
-                    
-                    />}
+                    }} />
+                    :""  }
+                     <div className="hover:cursor-pointer" onClick={()=>router.push("user/settings")}>
+                        <Settings/>
+                    </div>
 
                 </div>
+                
                 
                 <div className="flex flex-row justify-center">
                     <NText data={{active:page == 1 ? true : false, arrow:true ,text:"Home", }} handleClick={()=>changePage(1)}/>

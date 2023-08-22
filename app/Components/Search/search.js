@@ -1,10 +1,10 @@
 "use client"
-import { SearchOffOutlined, SearchOutlined } from "@mui/icons-material";
+import { SearchOffOutlined, SearchOutlined, SearchSharp } from "@mui/icons-material";
 import React from "react";
 
 function Search({data}) {
     return ( 
-        <div className="search justify-between p-1 ">
+        <div className="search mx-auto sm:w-1/2 justify-between p-1 ">
             <input
              type='text'
              placeholder={data.placeholder}
@@ -14,8 +14,8 @@ function Search({data}) {
              
              >
             </input>
-            <div className="hover:bg-gray-500">
-                <SearchOffOutlined/>
+            <div className="hover:bg-gray-500" onClick={data.handleSearch}>
+                <SearchSharp/>
             </div>
             
         </div>

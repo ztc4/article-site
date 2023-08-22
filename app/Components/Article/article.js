@@ -15,6 +15,7 @@ function Article({data}) {
     function handleClick(){
 
     }
+  
     let background = `http://localhost:5000/articles/${data._id}/posterImage`
     return ( 
         <div className="w-[300px] border-1 overflow-hidden shadow-xl hover: cursor-pointer rounded-lg" onClick={redirect}>
@@ -27,7 +28,7 @@ function Article({data}) {
         <div className="p-4">
             <h4 className="title-text">{data.title}</h4>
             <p className="text-xs font-light">Author:<span className="font-extralight">{data.author}</span></p>
-            <p className="text-xs font-light">Category:<span className="font-extralight">{data.category ||" undefined"}</span></p>
+            <p className="text-xs font-light">Category:<span className="font-extralight">{data.category}</span></p>
 
         </div>
 

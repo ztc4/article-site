@@ -1,20 +1,35 @@
+import Button from "@/app/Components/Button/button";
 import Container from "@/app/Components/Container/container";
 import User from "@/app/Components/User/user";
 import { UserContext } from "@/app/user/context/userContext";
+import { GetSubscribedUsers } from "@/app/user/fetch/UserSubscribe";
 import React from "react";
 
 function Accounts() {
-    const{data}= React.useContext(UserContext)
-    let articles = data.subscribedUsers.map(current => <User key={current._id} data={current}/>)
+    let buttondata = {
+        text:"Load more users",
+        size: "submit",
+        name: "Load more",
+        disabled: false
+    }
+    const{data, GetSubscribedUsers}= React.useContext(UserContext)
+    let users = data.subscribedUsers.map(current => <User key={current._id} data={current}/>)
     return ( 
         <div>
-            {articles.length > 0 && <p className="mt-12 text-center">You are subscribed to {"1"}  accounts</p>}
+            {users.length > 0 && <p className="mt-12 text-center">You are subscribed to {"1"}  accounts</p>}
         <Container>
              
-            {articles}
-            {articles.length == 0 && <p className="mt-12">You haven't subscribed to anyone</p>}
+            {users}
+            {users.length == 0 && <p className="mt-12">You haven't subscribed to anyone</p>}
 
         </Container>
+        {users.length % 10 == 0   ?
+                <div className="p-8">
+                    <Button data={buttondata} handleClick={GetSubscribedUsers}/>
+                </div>:
+                <p className="text-center mt-4">There are no more users</p>
+                
+                }
         </div>
     
         );
