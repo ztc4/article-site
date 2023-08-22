@@ -5,6 +5,8 @@ import React from "react"
 import { UserContext } from "../context/userContext"
 import Image from "next/image"
 import axios from "axios"
+import Layout from "./layout"
+import BackButton from "@/app/article/[id]/components/backButton"
 
 function Settings() {
     const{user,setUser}= React.useContext(UserContext)
@@ -99,7 +101,9 @@ function Settings() {
 
     return ( 
         <div className="min-h-screen w-screen overflow-x-hidden">
+            
             <div className=" grid grid-cols-1 gap-8 w-full p-12 mx-auto  md:w-10/12 lg:w-8/12">
+                
                 <div className="flex flex-row gap-4 items-center">
                     <div className="h-24 w-24  rounded-full">
                         <Image 
@@ -143,5 +147,10 @@ function Settings() {
         </div>
      );
 }
+Settings.getLayout = function getLayout(page) {
+    return (
+     {page}
+    )
+  }
 
 export default Settings;

@@ -1,10 +1,17 @@
+import BackButton from "@/app/article/[id]/components/backButton";
+
 function Layout({children}) {
     return ( 
         <div>
-            <h1>Hello</h1>
+            <div className="absolute sm: left-16 hover: cursor-pointer">
+
+                <BackButton/>
+            </div>
+            
             {children}
         </div>
      );
 }
+
 
 export default Layout;

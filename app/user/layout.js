@@ -323,13 +323,16 @@ function Layout({children}) {
 
     return ( 
         <UserContext.Provider value={{
-            page,subscribedPage,setSubscribedPage,myPage
+            page,setPage,subscribedPage,setSubscribedPage,myPage
             ,setMyPage,newArticle,setNewArticle,
             search,setSearch,data,
             //Fetch functions
             LikedArticles,
             SubscribedArticle,
             PostedArticles,
+
+            //
+            searchOptions,
 
             GetSubscribers,
             GetSubscribedUsers,
@@ -338,34 +341,9 @@ function Layout({children}) {
             setUser
             }}>
             <div className=" w-screen">
-                <div className="flex gap-3 flex-row items-center px-8 h-16 color4">
-                {data.avatar !== ""  && !data? 
-                    <Image width={50} height={50} className="border rounded-full" src="/r" alt="article image"/>: 
-                    <div className=" border bg-red-600 rounded-full h-12 w-12"/>}
-                   
-                   {searchOptions.placeholder?
-                    
-                   <Search 
-                    data={{
-                        placeholder: `Search by ${searchOptions.placeholder}`,
-                        value:searchOptions.value,
-                        handleChange: searchOptions.changeFunction,
-                        handleSearch : searchOptions.handleSearch
-                    
-                    }} />
-                    :""  }
-                     <div className="hover:cursor-pointer" onClick={()=>router.push("user/settings")}>
-                        <Settings/>
-                    </div>
 
-                </div>
                 
                 
-                <div className="flex flex-row justify-center">
-                    <NText data={{active:page == 1 ? true : false, arrow:true ,text:"Home", }} handleClick={()=>changePage(1)}/>
-                    <NText data={{active:page == 2 ? true : false, arrow:true ,text:"Subscribed"}} handleClick={()=>changePage(2)}/>
-                    <NText data={{active:page == 3 ? true : false, arrow:true ,text:"My page"}} handleClick={()=>changePage(3)}/>
-                </div>
                 {children}
 
 
