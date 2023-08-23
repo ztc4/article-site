@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -12,11 +13,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <footer className='bg-neutral-700 text-neutral-100 font-semibold mt-8 h-36 flex flex-row justify-center items-center'>
-        <p>This Is An Portfolio Site For <a className='text-purple-500'>zachary4coats@gmail.com </a></p>
-        <p>GITHUB Repository @ <a className='text-purple-500' href='https://github.com/ztc4/article-site'>https://github.com/ztc4/article-site</a></p>
+      <div className='bg-neutral-700 text-neutral-100 gap-8 font-semibold mt-8 h-36 flex flex-wrap flex-row justify-center items-center'>
+        <p>This Is An Portfolio Site For <span className='text-purple-500'>zachary4coats@gmail.com </span></p>
+        <p>GITHUB Repository @ <Link className='text-purple-500' href='https://github.com/ztc4/article-site'>https://github.com/ztc4/article-site</Link></p>
 
-      </footer>
+      </div>
     </html>
   )
 }

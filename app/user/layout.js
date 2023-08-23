@@ -13,7 +13,7 @@ import Image from "next/image";
 function Layout({children}) {
 
     const router = useRouter()
-    console.log(router.query)
+    
 
     const [page,setPage] = React.useState(1)
     const [subscribedPage, setSubscribedPage] = React.useState(1)
@@ -74,7 +74,7 @@ function Layout({children}) {
         subscribedArticle:[],
         subscribedUsers:[],
         //all search
-        mainSearch: []
+        mainArticles: []
       
     })
     function DataChange(key,data,lastSearch,currentSearch){
@@ -82,10 +82,38 @@ function Layout({children}) {
             ...current,
             [key]: lastSearch == currentSearch ? current[key].concat(data) : data,
         }))
-
+    }
+    //Search results for main
+    async function MainSearch(){
+       await axios.get(`http://localhost:5000/search?search=${search.mainSearch}`).then(
+        res => console.log(res)
+       )
+       .catch( res => console.log(res))
 
     }
+    MainSearch()
+
+
+
     //FETCH DATA RELATED TO ARTICLES
+    async function MainArticles() {
+        let last = search.mainSearchLast
+        let current = search.mainSearch
+        let skip = last == current ? search.mainSearchSkip : 0
+        await axios.get(`http://localhost:5000/articles?search=${search.mainSearch}&skip=${skip}`,{
+            withCredentials: true
+        })
+        .then(res => {DataChange("mainArticles", res.data,search.mainSearchLast,search.mainSearch)})
+        .then(setSearch(current=>({
+            ...current,
+            mainSearchSkip: skip + 10,
+            mainSearchLast : search.mainSearch
+        })))
+    }
+
+
+
+
     async function LikedArticles() {
         let last = search.likedArticlesLast
         let current = search.likedArticles
@@ -115,6 +143,9 @@ function Layout({children}) {
             postedArticlesLast : search.postedArticles
         })))
     }
+
+
+
     async function SubscribedArticle() {
 
         let last = search.subscribedArticlesLast
@@ -170,7 +201,7 @@ function Layout({children}) {
         username:"",
         category:"",
     })
-    console.log(user)
+    
 
     //GET DATA AT BEGINNING
     React.useEffect(()=>{
@@ -195,12 +226,14 @@ function Layout({children}) {
         // FETCH FOLLOWING AND FOLLOWERES
         GetSubscribers()
         GetSubscribedUsers()
+        //
+        MainArticles()
 
         //HAD THE SET MY DATA DUE TO UNKNOWN ERROR
         setSearch({
             //My Page
             likedArticles: "",
-            likedArticlesSkip: 10,
+            likedArticlesSkip: 0,
             likedArticlesLast:"",
             //
             postedArticles:"",
@@ -213,7 +246,7 @@ function Layout({children}) {
     
             //Subscribed
             subscribedArticles:"",
-            subscribedArticlesSkip:10,
+            subscribedArticlesSkip:0,
             subscribedArticlesLast:"",
             //
             subscribedUsers:"",
@@ -222,7 +255,7 @@ function Layout({children}) {
     
             //all search
             mainSearch: "",
-            mainSearchSkip: 10,
+            mainSearchSkip: 0,
             mainSearchLast:"",
     
         })
@@ -246,9 +279,10 @@ function Layout({children}) {
             placeholder= "all"
             changeFunction =(e)=> setSearch(current=>({
                 ...current,
-                mainSearch: e.target.value
+                mainSearch: e.target.value,
             }));
             value = search.mainSearch
+            handleSearch= (e)=>MainArticles
             
 
         }
@@ -258,7 +292,7 @@ function Layout({children}) {
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
                     subscribedUsers: e.target.value,
-                    subscribedUsersSkip: 0
+                    
                 }))
                 value = search.subscribedUsers
                 handleSearch= (e)=>GetSubscribedUsers()
@@ -270,7 +304,7 @@ function Layout({children}) {
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
                     subscribedArticles: e.target.value,
-                    subscribedArticlesSkip: 0
+                    
                 }))
                 value = search.subscribedArticles,
                 handleSearch= (e)=>SubscribedArticle()
@@ -296,7 +330,7 @@ function Layout({children}) {
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
                     subscribers: e.target.value,
-                    sunscribersSkip: 0
+                    
                 }));
                 value = search.subscribers
                 handleSearch= (e)=>GetSubscribers()
@@ -306,7 +340,7 @@ function Layout({children}) {
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
                     likedArticles: e.target.value,
-                    likedArticlesSkip: 0
+                    
                 }));
                 value = search.likedArticles
                 handleSearch= (e)=>LikedArticles()
@@ -330,6 +364,7 @@ function Layout({children}) {
             LikedArticles,
             SubscribedArticle,
             PostedArticles,
+            MainArticles,
 
             //
             searchOptions,
