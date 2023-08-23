@@ -67,45 +67,25 @@ export default function Home() {
        </div>
        <div className=' mt-8 flex flex-col gap-1 justify-center items-center sm:gap-3 '>
          <h2 className='font-medium text-xl xl:text-2xl '>Features That Empower You</h2>
-         
-        <div className='flex flex-row gap-1 flex-wrap justify-center p-4'>
-          <div className='grid grid-cols-1  max-w-[300px] outline-1 outline '>
-            <div className=' bg-gray-200-600 p-8 h-[300px] bg-slate-400'>
-                <p className='text-center tracking-wide text-xl xl:text-2xl font-medium'>Craft Your Stories</p>
-                <Image 
-                  height={2400}
-                  width={1600}
-                  className='object-center   sm:object-contain sm:w-full h-full '
-                  alt="Landing Page image"
-                  src={"/landing-page-image-2.png"}
-                />
-            </div>
+         <ul className='p-4 gap-4'>
+            <li className='text-center mb-8 text-lg font-normal'>
+            <span className='font-medium'>🖋️Craft Your Stories: </span>
+                 Dive into the art of storytelling with our intuitive article creation tools.
+                Seamlessly combine captivating poster images with engaging paragraphs to create articles that leave a lasting impact.
+            </li>
+            <li className='text-center mb-8 text-lg font-normal'>
+            <span className='font-medium'>🔒Secure and Seamless: </span>
+             Rest assured that your creative works are protected in a secure environment.
+             Our seamless interface ensures that your focus remains on crafting exceptional articles.
+            </li>
+            <li className='text-center mb-8 text-lg font-normal'>
+            <span className='font-medium'>.📈 Track Your Impact: </span>
+             Gain insights into the performance of your articles.
+              Measure likes, engagement, and subscriptions to refine your content strategy and understand what resonates with your audience.
+            </li>
+         </ul>
 
-            <p className=' tracking-wide text-lg text-center p-3 font-medium bg-orange-300'>
-              Dive into the art of storytelling with our intuitive article creation tools.
-              Seamlessly combine captivating poster images with engaging paragraphs to create articles that leave a lasting impact.
-            </p>
-          </div>
-          <div className='grid grid-cols-1  max-w-[300px] outline-1 outline '>
-            <div className=' bg-gray-200-600 p-8 h-[300px] bg-slate-400'>
-                <p className='text-center tracking-wide text-xl xl:text-2xl font-medium'>🌟Build a Following</p>
-                <Image 
-                  height={2400}
-                  width={1600}
-                  className='object-center   object-scale-down sm:w-full h-full '
-                  alt="Landing Page image"
-                  src={"/landing-page-image-3.png"}
-                />
-            </div>
 
-            <p className=' tracking-wide text-lg text-center p-3 font-medium bg-purple-300'>
-            Build a Following: Your words deserve to be heard!
-            Showcase your articles to a growing audience of readers who share your passion.
-              Gain followers, receive feedback, and build a community around your unique perspective.
-            </p>
-        </div>
-
-        </div>
 
 
          

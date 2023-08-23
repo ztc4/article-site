@@ -12,6 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      <footer className='bg-neutral-700 text-neutral-100 font-semibold mt-8 h-36 flex flex-row justify-center items-center'>
+        <p>This Is An Portfolio Site For <a className='text-purple-500'>zachary4coats@gmail.com </a></p>
+        <p>GITHUB Repository @ <a className='text-purple-500' href='https://github.com/ztc4/article-site'>https://github.com/ztc4/article-site</a></p>
+
+      </footer>
     </html>
   )
 }
