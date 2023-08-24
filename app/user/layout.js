@@ -8,6 +8,7 @@ import React from "react";
 import { useParams, useRouter } from "next/navigation";
 import { CurrencyYenTwoTone, Settings } from "@mui/icons-material";
 import Image from "next/image";
+import cookieCutter from "cookie-cutter";
 
 
 function Layout({children}) {
@@ -93,7 +94,9 @@ function Layout({children}) {
         let current = search.mainSearch
         let skip = last == current ? search.mainSearchSkip : 0
         await axios.get(`http://localhost:5000/articles?search=${search.mainSearch}&skip=${skip}`,{
-            withCredentials: true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
         })
         .then(res => {DataChange("mainArticles", res.data,search.mainSearchLast,search.mainSearch)})
         .then(setSearch(current=>({
@@ -111,7 +114,9 @@ function Layout({children}) {
         let current = search.likedArticles
         let skip = last == current ? search.likedArticlesSkip: 0
         await axios.get(`http://localhost:5000/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
-            withCredentials:true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
         })
         .then(res => DataChange("likedArticles", res.data,search.likedArticlesLast,search.likedArticles))
         .then(setSearch(current=>({
@@ -126,7 +131,9 @@ function Layout({children}) {
         let current = search.postedArticles
         let skip = last == current ? search.postedArticlesSkip : 0
         await axios.get(`http://localhost:5000/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
-            withCredentials: true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
         })
         .then(res => {DataChange("postedArticle", res.data,search.postedArticlesLast,search.postedArticles)})
         .then(setSearch(current=>({
@@ -144,7 +151,9 @@ function Layout({children}) {
         let current = search.subscribedArticles
         let skip = last == current ? search.subscribedArticles : 0
        await axios.get(`http://localhost:5000/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
-            withCredentials:true
+        headers:{
+            Authorization : `Bearer ${cookieCutter.get("token")}`
+           }
         })
         .then(res => DataChange("subscribedArticle", res.data, search.subscribedArticlesLast,search.subscribedArticles))
         .then(setSearch(current=>({
@@ -160,7 +169,9 @@ function Layout({children}) {
         let current = search.subscribedUsersLast
         let skip = last == current ? search.subscribedUsersSkip : 0
          await axios.get(`http://localhost:5000/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
-            withCredentials: true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
          })
         .then(res => DataChange("subscribedUsers", res.data,search.subscribedUsersLast, search.subscribedUsers))
         .then(setSearch(current=>({
@@ -175,7 +186,9 @@ function Layout({children}) {
         let current = search.subscribers
         let skip = last == current ? search.subscribersSkip : 0
          await axios.get(`http://localhost:5000/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
-            withCredentials:true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
         })
         .then(res => DataChange("subscribers", res.data,search.subscribersLast, search.subscribers))
         .then(setSearch(current=>({
@@ -199,7 +212,9 @@ function Layout({children}) {
     React.useEffect(()=>{
         console.log("checking login")
         axios.get(`http://localhost:5000/login/check`,
-        {withCredentials: true})
+        {           headers:{
+            Authorization : `Bearer ${cookieCutter.get("token")}`
+           }})
         .then( res => setUser({
             id:res.data._id, 
             username:res.data.username,

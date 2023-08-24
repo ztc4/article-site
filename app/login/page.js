@@ -14,6 +14,12 @@ function Login() {
 
     const { push } = useRouter()
 
+    // cookieCutter.set("name","lee")
+    // let name = cookieCutter.get("token")
+    // console.log(name)
+
+  
+
 
     const [login,setLogin] = React.useState({
         username:"",
@@ -41,14 +47,11 @@ function Login() {
             `http://localhost:5000/login`,{
              username:login.username,
                password:login.password
-            },{
-                withCredentials: true
             }
-
         )
         .catch( res => alert("couldn't login"))
-        .then(
-            res =>{push("user")})
+        .then(res => cookieCutter.set("token", res.data))
+        .then(res =>{push("user")})
     }
     let userNameData = {
         placeholder: "Enter Username", 

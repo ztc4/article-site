@@ -8,6 +8,8 @@ import axios from "axios"
 import Layout from "./layout"
 import BackButton from "@/app/article/[id]/components/backButton"
 
+import cookieCutter from "cookie-cutter"
+
 function Settings() {
     const{user,setUser}= React.useContext(UserContext)
     const router = useRouter()
@@ -63,7 +65,9 @@ function Settings() {
         axios.put(
             `http://localhost:5000/user/avatar`,formData,
             {
-                withCredentials: true
+                headers:{
+                    Authorization : `Bearer ${cookieCutter.get("token")}`
+                   }
             }
 
         )
@@ -76,7 +80,9 @@ function Settings() {
 
             },
             {
-                withCredentials: true
+                headers:{
+                    Authorization : `Bearer ${cookieCutter.get("token")}`
+                   }
             }
 
         )
@@ -89,7 +95,9 @@ function Settings() {
 
             },
             {
-                withCredentials: true
+                headers:{
+                    Authorization : `Bearer ${cookieCutter.get("token")}`
+                   }
             }
 
         )

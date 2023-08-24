@@ -2,6 +2,7 @@
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import axios from "axios";
 import React from "react";
+import cookieCutter from "cookie-cutter"
 
 function LikeButton({id}) {
     let[isLiked,setLiked] = React.useState(false)
@@ -9,7 +10,9 @@ function LikeButton({id}) {
         axios.put("http://localhost:5000/article/like",{
             articleId: id
         },{
-            withCredentials: true
+           headers:{
+            Authorization : `Bearer ${cookieCutter.get("token")}`
+           }
         })
         .then(res => {setLiked(!isLiked); return res})
         .catch(error => { console.log(error);alert(error);})
@@ -19,7 +22,9 @@ function LikeButton({id}) {
     React.useEffect(()=>{
 
         axios.get(`http://localhost:5000/article/${id}/isliked`,{
-            withCredentials:true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
         })
         .then(res => setLiked(res.data.liked))
 

@@ -11,6 +11,7 @@ function User({data}) {
     }
 
 
+    let [error,setError]= React.useState(false)
 
     //username category articles subscribers id
     function handleClick(){
@@ -20,14 +21,16 @@ function User({data}) {
         <div className="flex flex-col p-1 card w-[300px] h-20 " onClick={redirect}>
             <div className="h-full ml-2 flex flex-row items-center">
                 <div className=" w-2/12 justify-center">
-                {
+                { error == false?
                     <Image 
                     
                     width={50} height={50} 
                     className="rounded-full hover:cursor-pointer"
                     src={`http://localhost:5000/users/${data.id}/avatar`} 
-                    alt="article image"/>
-                    || 
+                    alt="article image"
+                    onError={ setError(true)}
+                    />
+                    :
                     <div 
                     onClick={()=>router.push(`/profile/${data.username}`)}
                     className=" border hover:cursor-pointer bg-yellow-600 rounded-full h-12 w-12"/>}

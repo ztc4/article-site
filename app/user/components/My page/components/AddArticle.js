@@ -2,6 +2,7 @@ import Input from "@/app/Components/Input/input";
 import { UserContext } from "@/app/user/context/userContext";
 import axios from "axios";
 import React from "react";
+import cookieCutter from "cookie-cutter"
 function AddArticles() {
 
     const{newArticle, setNewArticle}= React.useContext(UserContext)
@@ -49,9 +50,11 @@ function AddArticles() {
             formData.append("articleText",newArticle.article)
             formData.append("category",newArticle.category)
            await  axios.post("http://localhost:5000/article/add", formData,{
-            withCredentials:true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
            }).then(res =>{
-                console.log(res)
+                alert("image was saved")
             })
 
         }

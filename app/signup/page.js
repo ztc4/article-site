@@ -1,14 +1,14 @@
 "use client"
 import React from "react";
-
 import Button from "../Components/Button/button";
 import Input from "../Components/Input/input";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import cookieCutter from "cookie-cutter"
 
 function Signup() {
-    // const router = useRouter()
+    const router = useRouter()
     function ButtonHandleClick(){
         axios.post(`http://localhost:5000/signup`,{
             firstname:signup.fname,
@@ -18,8 +18,9 @@ function Signup() {
             email:signup.email,
             password:signup.password
         },{
-            withCredentials: true
+            
         })
+        .then(res => cookieCutter.set("token", res.data))
         .then(res => router.push("user") )
         .catch(error => alert(error))
       

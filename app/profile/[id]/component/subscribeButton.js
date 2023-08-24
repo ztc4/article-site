@@ -3,6 +3,7 @@ import cookieCutter from 'cookie-cutter'
 import axios, { Axios } from "axios";
 import React,{ useEffect } from 'react';
 
+
 function SubscribeButton({username}) {
 
     let[isSubscribed, setSubscribed] = React.useState(false)
@@ -12,7 +13,9 @@ function SubscribeButton({username}) {
        {
             username: username
         },{
-            withCredentials:true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
         }
         )
         .then(res => {setSubscribed(!isSubscribed)})
@@ -25,7 +28,9 @@ function SubscribeButton({username}) {
     React.useEffect(()=>{
 
         axios.get(`http://localhost:5000/user/subscribed/${username}/check`,{
-            withCredentials: true
+            headers:{
+                Authorization : `Bearer ${cookieCutter.get("token")}`
+               }
         }).then(
             res => {console.log(res);setSubscribed(res.data.subscribed)})
         
