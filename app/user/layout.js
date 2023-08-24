@@ -83,15 +83,7 @@ function Layout({children}) {
             [key]: lastSearch == currentSearch ? current[key].concat(data) : data,
         }))
     }
-    //Search results for main
-    async function MainSearch(){
-       await axios.get(`http://localhost:5000/search?search=${search.mainSearch}`).then(
-        res => console.log(res)
-       )
-       .catch( res => console.log(res))
 
-    }
-    MainSearch()
 
 
 
@@ -100,7 +92,7 @@ function Layout({children}) {
         let last = search.mainSearchLast
         let current = search.mainSearch
         let skip = last == current ? search.mainSearchSkip : 0
-        await axios.get(`http://localhost:5000/articles?search=${search.mainSearch}&skip=${skip}`,{
+        await axios.get(`https://article-api-wd57.onrender.com/articles?search=${search.mainSearch}&skip=${skip}`,{
             withCredentials: true
         })
         .then(res => {DataChange("mainArticles", res.data,search.mainSearchLast,search.mainSearch)})
@@ -118,7 +110,7 @@ function Layout({children}) {
         let last = search.likedArticlesLast
         let current = search.likedArticles
         let skip = last == current ? search.likedArticlesSkip: 0
-        await axios.get(`http://localhost:5000/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
+        await axios.get(`https://article-api-wd57.onrender.com/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
             withCredentials:true
         })
         .then(res => DataChange("likedArticles", res.data,search.likedArticlesLast,search.likedArticles))
@@ -133,7 +125,7 @@ function Layout({children}) {
         let last = search.postedArticlesLast
         let current = search.postedArticles
         let skip = last == current ? search.postedArticlesSkip : 0
-        await axios.get(`http://localhost:5000/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
+        await axios.get(`https://article-api-wd57.onrender.com/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
             withCredentials: true
         })
         .then(res => {DataChange("postedArticle", res.data,search.postedArticlesLast,search.postedArticles)})
@@ -151,7 +143,7 @@ function Layout({children}) {
         let last = search.subscribedArticlesLast
         let current = search.subscribedArticles
         let skip = last == current ? search.subscribedArticles : 0
-       await axios.get(`http://localhost:5000/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
+       await axios.get(`https://article-api-wd57.onrender.com/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
             withCredentials:true
         })
         .then(res => DataChange("subscribedArticle", res.data, search.subscribedArticlesLast,search.subscribedArticles))
@@ -167,7 +159,7 @@ function Layout({children}) {
         let last = search.subscribedUsers
         let current = search.subscribedUsersLast
         let skip = last == current ? search.subscribedUsersSkip : 0
-         await axios.get(`http://localhost:5000/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
+         await axios.get(`https://article-api-wd57.onrender.com/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
             withCredentials: true
          })
         .then(res => DataChange("subscribedUsers", res.data,search.subscribedUsersLast, search.subscribedUsers))
@@ -182,7 +174,7 @@ function Layout({children}) {
         let last = search.subscribersLast
         let current = search.subscribers
         let skip = last == current ? search.subscribersSkip : 0
-         await axios.get(`http://localhost:5000/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
+         await axios.get(`https://article-api-wd57.onrender.com/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
             withCredentials:true
         })
         .then(res => DataChange("subscribers", res.data,search.subscribersLast, search.subscribers))
@@ -201,12 +193,12 @@ function Layout({children}) {
         username:"",
         category:"",
     })
-    
+    const [searchMainActive,setSearchMainActive] = React.useState(false);
 
     //GET DATA AT BEGINNING
     React.useEffect(()=>{
         console.log("checking login")
-        axios.get(`http://localhost:5000/login/check`,
+        axios.get(`https://article-api-wd57.onrender.com/login/check`,
         {withCredentials: true})
         .then( res => setUser({
             id:res.data._id, 
@@ -216,7 +208,7 @@ function Layout({children}) {
             about:res.data.about
             
         }))
-        .catch(error => {alert("You aren't logged... taking you to login screen"); router.push('login')})
+        .catch(error => {alert("You aren't logged... taking you to login screen"); router.push('/login')})
 
         //FETCH ARTICLES FOR SETUP
         LikedArticles()
@@ -233,7 +225,7 @@ function Layout({children}) {
         setSearch({
             //My Page
             likedArticles: "",
-            likedArticlesSkip: 0,
+            likedArticlesSkip: 10,
             likedArticlesLast:"",
             //
             postedArticles:"",
@@ -246,16 +238,16 @@ function Layout({children}) {
     
             //Subscribed
             subscribedArticles:"",
-            subscribedArticlesSkip:0,
+            subscribedArticlesSkip:10,
             subscribedArticlesLast:"",
             //
             subscribedUsers:"",
-            subscribedUsersSkip:0,
+            subscribedUsersSkip:10,
             subscribedUsersLast:"",
     
             //all search
             mainSearch: "",
-            mainSearchSkip: 0,
+            mainSearchSkip: 10,
             mainSearchLast:"",
     
         })
@@ -282,7 +274,7 @@ function Layout({children}) {
                 mainSearch: e.target.value,
             }));
             value = search.mainSearch
-            handleSearch= (e)=>MainArticles
+            handleSearch= (e)=> MainArticles()
             
 
         }
@@ -373,7 +365,10 @@ function Layout({children}) {
             GetSubscribedUsers,
             //settings
             user,
-            setUser
+            setUser,
+
+            setSearchMainActive,
+            searchMainActive
             }}>
             <div className=" w-screen">
 

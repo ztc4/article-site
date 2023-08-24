@@ -20,7 +20,7 @@ function LikedArticles() {
             <Container>
                 
                 {articles}
-                {articles.length == 0 && <p className="mt-12">You haven't like any articles</p>} 
+                {articles.length == 0 && <p className="mt-12">You haven&apos;t like any articles</p>} 
                     
                 </Container>
                 {articles.length % 10 == 0   ?

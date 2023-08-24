@@ -11,7 +11,7 @@ function ProfileArticles({username}) {
 
     React.useEffect(()=>{
         console.log("getting data")
-      axios.get(`http://localhost:5000/article/profile/${username}`)
+      axios.get(`https://article-api-wd57.onrender.com/article/profile/${username}`)
         .then(res=>
            setData(res.data)
         )

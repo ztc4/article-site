@@ -24,7 +24,7 @@ export default function Home() {
          <h2 className='font-semibold text-2xl xl:text-3xl text-center'>Craft,Share,Connect</h2>
          <p className='text-center sm:w-3/5 tracking-wide sm:text-lg font-medium'>Are you ready to bring your thoughts to life? Welcome to ArticleCraft,
            the ultimate platform for unleashing your creativity through beautifully
-          crafted articles. Whether you're a seasoned writer or just starting your
+          crafted articles. Whether you&apos;re a seasoned writer or just starting your
           journey, our user-friendly interface empowers you to create captivating
           articles that inspire, inform, and entertain.
           </p>
@@ -42,7 +42,7 @@ export default function Home() {
          <h2 className='font-semibold text-2xl xl:text-3xl text-center'>Join ArticleCraft Today!</h2>
          <p className='text-center sm:w-3/5 tracking-wide text-lg font-medium'>
          Embark on a journey of self-expression and connection.
-          Whether you're an aspiring author, an experienced wordsmith,
+          Whether you&apos;re an aspiring author, an experienced wordsmith,
            or simply someone who loves to read and engage with meaningful content, ArticleCraft welcomes you.
            Sign up now to start creating, sharing, and connecting like never before.
           </p>

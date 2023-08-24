@@ -3,10 +3,11 @@ import React from "react";
 import ProfileArticles from "./component/latest";
 import SubscribeButton from "./component/subscribeButton";
 import { cookies } from 'next/headers'
+import BackButton from "@/app/article/[id]/components/backButton";
 
 async function getProfile(id){
     
-    let data = fetch(`http://localhost:5000/user/${id}`,{
+    let data = fetch(`https://article-api-wd57.onrender.com/user/${id}`,{
         method: "GET",
         cache: 'no-cache'
     
@@ -27,13 +28,14 @@ async function Profile(query) {
     
     return ( 
         <div className="w-screen h-min-screen flex flex-col overflow-x-hidden  sm:p-16 justify-center  ">
+
             <div className={" sm:bg-gray-100 sm:p-4 sm:drop-shadow sm:border-2 sm:mx-auto sm:rounded-3xl sm:w-[860px]  sm:max-h-fit"}>
 
                 <div className="flex flex-col sm:flex-row gap-3 flex-wrap ">
                     <div className=" bg-gray-200 rounded-2xl p-4">
                         <Image 
                             className=" color4 drop-shadow h-16 w-16 rounded-full "
-                            src={`http://localhost:5000/users/${data._id}/avatar`} 
+                            src={`https://article-api-wd57.onrender.com/users/${data._id}/avatar`} 
                             width={50} height={50} alt="News article poster Image"
                             loading="lazy"
                             />

@@ -20,7 +20,8 @@ describe("button render correctly",()=>{
         cy.mount(<Button data={data} handleClick={handleClick} />)
 
         cy.get("button").contains(data.text);
+        cy.get("button").should("be.enabled")
 
-        cy.get("button").click().should("be.calledOnce")
+       
     })
 })

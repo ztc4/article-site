@@ -20,7 +20,7 @@ function Accounts() {
         <Container>
              
             {users}
-            {users.length == 0 && <p className="mt-12">You haven't subscribed to anyone</p>}
+            {users.length == 0 && <p className="mt-12">You haven&apos;t subscribed to anyone</p>}
 
         </Container>
         {users.length % 10 == 0   ?

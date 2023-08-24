@@ -22,7 +22,7 @@ function CreatedArticles() {
             <Container>
 
                 {articles}
-                {articles.length == 0 && <p className="mt-12">You haven't posted an article</p>}
+                {articles.length == 0 && <p className="mt-12">You haven&apos;t posted an article</p>}
                 
             </Container>
             {articles.length % 10 == 0   ?

@@ -1,8 +1,10 @@
 "use client"
-import { SearchOffOutlined, SearchOutlined, SearchSharp } from "@mui/icons-material";
+import { SearchSharp } from "@mui/icons-material";
 import React from "react";
 
 function Search({data}) {
+
+
     return ( 
         <div className="search mx-auto sm:w-1/2 justify-between p-1 ">
             <input

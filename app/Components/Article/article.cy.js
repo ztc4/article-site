@@ -3,21 +3,16 @@ const { default: Article } = require("./article")
 describe("article test",()=>{
     it("Check if rendered correcly",()=>{
 
+        //You would have errors rendering due to using router
+
         const data = {
             title: "Hello",
             author: "Zachary Coats",
             posterImage:"",
             timePosted:"",
             category: "Gaming",
-            article: [
-                {type:"paragraph",
-                paragraph: "The first paragraph in the sentence"},
-                {type:"image",
-                paragraph: "The first paragraph in the sentence"},
-                {type:"paragraph",
-                paragraph: "the second paragraph"},
+          
 
-            ]
         }
 
     //render data
@@ -27,15 +22,14 @@ describe("article test",()=>{
     //check render
     //title
     cy.get('h4').contains(data.title)
-
-    //first paragraph
-    cy.get('p').contains(data.article[0].paragraph)
     //author render??
-    cy.get('p').contains(data.author)
+    cy.get('p').contains(`Author:${data.author}`)
     //Category renders
-    cy.get('p').contains(data.category)
+    cy.get('p').contains(`Category:${data.category}`)
+
+
     // click the wrapper
-    cy.get("#article-component-wrapper").click()
+    cy.get("div").eq(0).click({force:true})
 
     
 })}

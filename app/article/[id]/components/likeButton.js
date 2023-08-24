@@ -6,7 +6,7 @@ import React from "react";
 function LikeButton({id}) {
     let[isLiked,setLiked] = React.useState(false)
     async function LikeArticle(){
-        axios.put("http://localhost:5000/article/like",{
+        axios.put("https://article-api-wd57.onrender.com/article/like",{
             articleId: id
         },{
             withCredentials: true
@@ -18,7 +18,7 @@ function LikeButton({id}) {
 
     React.useEffect(()=>{
 
-        axios.get(`http://localhost:5000/article/${id}/isliked`,{
+        axios.get(`https://article-api-wd57.onrender.com/article/${id}/isliked`,{
             withCredentials:true
         })
         .then(res => setLiked(res.data.liked))

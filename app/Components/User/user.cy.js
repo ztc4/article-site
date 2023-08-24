@@ -1,15 +1,14 @@
-const { contains } = require("cypress/types/jquery")
+
 const { default: User } = require("./user")
 
  describe("User component test",()=>{
     it("Render User",()=>{
 
         let user = {
+            id:1,
             username: "ztc4",
-            avatar: "",
+            articles:9,
             subscribers: 0,
-            lastPost:"",
-            articles: 0,
             category:"gaming"
         }
         cy.mount(<User data={user}/>)
@@ -17,8 +16,9 @@ const { default: User } = require("./user")
 
         //render the text
         cy.get("h4").contains(user.username)
+        
         cy.get("p").contains(user.articles)
-        cy.get("p").contains(user.lastPost)
+        
         cy.get("p").contains(user.subscribers)
 
         //render image

@@ -8,9 +8,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 function Signup() {
-    const router = useRouter()
+    // const router = useRouter()
     function ButtonHandleClick(){
-        axios.post(`http://localhost:5000/signup`,{
+        axios.post(`https://article-api-wd57.onrender.com/signup`,{
             firstname:signup.fname,
             lastname:signup.lname,
             age:signup.age,
@@ -115,8 +115,8 @@ function Signup() {
             {pageNumber == 3 &&<Input data={confirmData} handleChange={handleChange}/>}
 
             <div className="flex flex-row justify-center">
-                <button className="arrow-button" onClick={()=>setPageNumber(current=> current -1)} disabled={(pageNumber == 2 || pageNumber == 3)? false : true}>{"<"}</button>
-                <button className="arrow-button" onClick={()=>setPageNumber(current=> current +1)} disabled={(pageNumber == 1 || pageNumber == 2)? false : true}>{">"}</button>
+                <button className="arrow-button" name="backward" onClick={()=>setPageNumber(current=> current -1)} disabled={(pageNumber == 2 || pageNumber == 3)? false : true}>{"<"}</button>
+                <button className="arrow-button" name="forward" onClick={()=>setPageNumber(current=> current +1)} disabled={(pageNumber == 1 || pageNumber == 2)? false : true}>{">"}</button>
 
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">

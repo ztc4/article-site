@@ -4,31 +4,50 @@ describe("Search Test",()=>{
     it("render search works correctly",()=>{
  
         let search={
-            filterpage: "subscribed" || "my",
-            handleChange: (e)=>{console.log("chnage state function")}
+            placeholder: "Search for Test",
+          
+            handleChange: (e)=> e.target.value,
+            handleSearch: (e)=> console.log(),
+            value:"Red"
+
  
          }
 
 
-        cy.mount(<Search search={search}/>)
+        cy.mount(<Search data={search}/>)
 
-        cy.get('input').type("ztc4")
-        cy.get("button").should("not.be.visible")
+        cy.get("div").eq(1)
+        .should("not.have.class","hover:bg-gray-500")
+        
+
+        cy.get('div').should("exist")
+        cy.get('input').should("have.value","Red")
+       
+        
     })
 
     it("render search all articles",()=>{
-
         let search={
-            filterpage: "all",
-            handleChange: (e)=>{console.log("change state function")}
+            placeholder: "Search for Test",
+          
+            handleSearch: (e)=> console.log(),
+            handleChange: (e)=> e.target.value,
+
  
          }
+         cy.mount(<Search data={search}/>)
 
          
-        cy.get('input').type("Programming")
+        cy.get('input')
+        .should("be.enabled")
+        .click()
+        .should("have.focus")
+        .type("blue")
 
+        cy.get("div>div").eq(0)
+        .click()
+        
 
-        cy.get("button").should("be.enabled")
 
     })
 })

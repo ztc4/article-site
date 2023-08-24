@@ -20,9 +20,17 @@ function User({data}) {
         <div className="flex flex-col p-1 card w-[300px] h-20 " onClick={redirect}>
             <div className="h-full ml-2 flex flex-row items-center">
                 <div className=" w-2/12 justify-center">
-                    {data.avatar !== ""  && !data? 
-                    <Image width={100} height={100}  src="/r" alt="article image"/>: 
-                    <div className=" border bg-red-600 rounded-full h-12 w-12"/>}
+                {
+                    <Image 
+                    
+                    width={50} height={50} 
+                    className="rounded-full hover:cursor-pointer"
+                    src={`https://article-api-wd57.onrender.com/users/${data.id}/avatar`} 
+                    alt="article image"/>
+                    || 
+                    <div 
+                    onClick={()=>router.push(`/profile/${data.username}`)}
+                    className=" border hover:cursor-pointer bg-yellow-600 rounded-full h-12 w-12"/>}
                     
                 </div>
                 <div className="w-full ml-2">
