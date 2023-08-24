@@ -48,7 +48,7 @@ function AddArticles() {
             formData.append("title",newArticle.title)
             formData.append("articleText",newArticle.article)
             formData.append("category",newArticle.category)
-           await  axios.post("https://article-api-wd57.onrender.com/article/add", formData,{
+           await  axios.post("http://localhost:5000/article/add", formData,{
             withCredentials:true
            }).then(res =>{
                 console.log(res)

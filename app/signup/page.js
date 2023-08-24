@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 function Signup() {
     // const router = useRouter()
     function ButtonHandleClick(){
-        axios.post(`https://article-api-wd57.onrender.com/signup`,{
+        axios.post(`http://localhost:5000/signup`,{
             firstname:signup.fname,
             lastname:signup.lname,
             age:signup.age,

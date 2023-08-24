@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import Container from "@/app/Components/Container/container";
+
 import axios from "axios";
 import Article from "@/app/Components/Article/article";
 
@@ -11,7 +11,7 @@ function ProfileArticles({username}) {
 
     React.useEffect(()=>{
         console.log("getting data")
-      axios.get(`https://article-api-wd57.onrender.com/article/profile/${username}`)
+      axios.get(`http://localhost:5000/article/profile/${username}`)
         .then(res=>
            setData(res.data)
         )

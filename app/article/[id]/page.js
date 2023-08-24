@@ -8,7 +8,7 @@ import LikeButton from "./components/likeButton";
 
 async function getArticle(id){
     
-    let data = fetch(`https://article-api-wd57.onrender.com/article/${id}`,{
+    let data = fetch(`http://localhost:5000/article/${id}`,{
         method: "GET",
         cache: 'no-cache'
     
@@ -35,7 +35,7 @@ async function Article(query) {
        
             <Image 
             className="object-center object-cover color4  h-96 w-full sm:object-cover"
-            src={`https://article-api-wd57.onrender.com/articles/${data._id}/posterImage`} 
+            src={`http://localhost:5000/articles/${data._id}/posterImage`} 
             width={100} height={100} alt="News article poster Image"/>
 
             {/*Like and Back Button */}

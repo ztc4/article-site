@@ -25,7 +25,7 @@ function User({data}) {
                     
                     width={50} height={50} 
                     className="rounded-full hover:cursor-pointer"
-                    src={`https://article-api-wd57.onrender.com/users/${data.id}/avatar`} 
+                    src={`http://localhost:5000/users/${data.id}/avatar`} 
                     alt="article image"/>
                     || 
                     <div 

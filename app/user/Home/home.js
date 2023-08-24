@@ -1,8 +1,10 @@
 import React from "react";
 import { UserContext } from "../context/userContext";
-import Container from "@/app/Components/Container/container";
+
 import Button from "@/app/Components/Button/button";
 import Article from "@/app/Components/Article/article";
+import Container from "@/app/Components/Container/container";
+
 function HomePage() {
     const{data, MainArticles,search}= React.useContext(UserContext)
     let articles = data.mainArticles.map(current => <Article key={current._id} data={current}/>)

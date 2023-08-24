@@ -92,7 +92,7 @@ function Layout({children}) {
         let last = search.mainSearchLast
         let current = search.mainSearch
         let skip = last == current ? search.mainSearchSkip : 0
-        await axios.get(`https://article-api-wd57.onrender.com/articles?search=${search.mainSearch}&skip=${skip}`,{
+        await axios.get(`http://localhost:5000/articles?search=${search.mainSearch}&skip=${skip}`,{
             withCredentials: true
         })
         .then(res => {DataChange("mainArticles", res.data,search.mainSearchLast,search.mainSearch)})
@@ -110,7 +110,7 @@ function Layout({children}) {
         let last = search.likedArticlesLast
         let current = search.likedArticles
         let skip = last == current ? search.likedArticlesSkip: 0
-        await axios.get(`https://article-api-wd57.onrender.com/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
+        await axios.get(`http://localhost:5000/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
             withCredentials:true
         })
         .then(res => DataChange("likedArticles", res.data,search.likedArticlesLast,search.likedArticles))
@@ -125,7 +125,7 @@ function Layout({children}) {
         let last = search.postedArticlesLast
         let current = search.postedArticles
         let skip = last == current ? search.postedArticlesSkip : 0
-        await axios.get(`https://article-api-wd57.onrender.com/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
+        await axios.get(`http://localhost:5000/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
             withCredentials: true
         })
         .then(res => {DataChange("postedArticle", res.data,search.postedArticlesLast,search.postedArticles)})
@@ -143,7 +143,7 @@ function Layout({children}) {
         let last = search.subscribedArticlesLast
         let current = search.subscribedArticles
         let skip = last == current ? search.subscribedArticles : 0
-       await axios.get(`https://article-api-wd57.onrender.com/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
+       await axios.get(`http://localhost:5000/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
             withCredentials:true
         })
         .then(res => DataChange("subscribedArticle", res.data, search.subscribedArticlesLast,search.subscribedArticles))
@@ -159,7 +159,7 @@ function Layout({children}) {
         let last = search.subscribedUsers
         let current = search.subscribedUsersLast
         let skip = last == current ? search.subscribedUsersSkip : 0
-         await axios.get(`https://article-api-wd57.onrender.com/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
+         await axios.get(`http://localhost:5000/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
             withCredentials: true
          })
         .then(res => DataChange("subscribedUsers", res.data,search.subscribedUsersLast, search.subscribedUsers))
@@ -174,7 +174,7 @@ function Layout({children}) {
         let last = search.subscribersLast
         let current = search.subscribers
         let skip = last == current ? search.subscribersSkip : 0
-         await axios.get(`https://article-api-wd57.onrender.com/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
+         await axios.get(`http://localhost:5000/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
             withCredentials:true
         })
         .then(res => DataChange("subscribers", res.data,search.subscribersLast, search.subscribers))
@@ -198,7 +198,7 @@ function Layout({children}) {
     //GET DATA AT BEGINNING
     React.useEffect(()=>{
         console.log("checking login")
-        axios.get(`https://article-api-wd57.onrender.com/login/check`,
+        axios.get(`http://localhost:5000/login/check`,
         {withCredentials: true})
         .then( res => setUser({
             id:res.data._id, 

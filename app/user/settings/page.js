@@ -61,7 +61,7 @@ function Settings() {
         }
     
         axios.put(
-            `https://article-api-wd57.onrender.com/user/avatar`,formData,
+            `http://localhost:5000/user/avatar`,formData,
             {
                 withCredentials: true
             }
@@ -72,7 +72,7 @@ function Settings() {
     }
     function Logout(){
         axios.put(
-            `https://article-api-wd57.onrender.com/logout`,{
+            `http://localhost:5000/logout`,{
 
             },
             {
@@ -85,7 +85,7 @@ function Settings() {
     }
     function LogoutAll() {
         axios.put(
-            `https://article-api-wd57.onrender.com/logoutAll`,{
+            `http://localhost:5000/logoutAll`,{
 
             },
             {
@@ -108,7 +108,7 @@ function Settings() {
                     <div className="h-24 w-24  rounded-full">
                         <Image 
                                 className=" color4 w-full border h-24 rounded-full  drop-shadow object-cover  "
-                                src={`https://article-api-wd57.onrender.com/users/${user.id}/avatar`} 
+                                src={`http://localhost:5000/users/${user.id}/avatar`} 
                                 width={50} height={50} alt="News article poster Image"
                                 loading="lazy"
                                 />
