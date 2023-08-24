@@ -10,7 +10,7 @@ import cookieCutter from "cookie-cutter"
 function Signup() {
     const router = useRouter()
     function ButtonHandleClick(){
-        axios.post(`http://localhost:5000/signup`,{
+        axios.post(`https://article-api-cookies-instead-of.onrender.com/signup`,{
             firstname:signup.fname,
             lastname:signup.lname,
             age:signup.age,

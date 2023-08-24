@@ -15,14 +15,14 @@ function Article({data}) {
 
  
   
-    let background = `http://localhost:5000/articles/${data._id}/posterImage`
+    let background = `https://article-api-cookies-instead-of.onrender.com/articles/${data._id}/posterImage`
     return ( 
         <div className="w-[300px] border-1 overflow-hidden shadow-xl hover: cursor-pointer rounded-lg" onClick={redirect}>
 
         <Image 
         width={50} height={200}  
         className="w-full h-[200px] object-cover"
-        src={`http://localhost:5000/articles/${data._id}/posterImage`}
+        src={`https://article-api-cookies-instead-of.onrender.com/articles/${data._id}/posterImage`}
         alt="Article Image"/>
         <div className="p-4">
             <h4 className="title-text">{data.title}</h4>

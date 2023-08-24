@@ -7,7 +7,7 @@ import BackButton from "@/app/article/[id]/components/backButton";
 
 async function getProfile(id){
     
-    let data = fetch(`http://localhost:5000/user/${id}`,{
+    let data = fetch(`https://article-api-cookies-instead-of.onrender.com/user/${id}`,{
         method: "GET",
         cache: 'no-cache'
     
@@ -35,7 +35,7 @@ async function Profile(query) {
                     <div className=" bg-gray-200 rounded-2xl p-4">
                         <Image 
                             className=" color4 drop-shadow h-16 w-16 rounded-full "
-                            src={`http://localhost:5000/users/${data._id}/avatar`} 
+                            src={`https://article-api-cookies-instead-of.onrender.com/users/${data._id}/avatar`} 
                             width={50} height={50} alt="News article poster Image"
                             loading="lazy"
                             />

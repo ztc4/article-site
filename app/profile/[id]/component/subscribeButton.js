@@ -8,7 +8,7 @@ function SubscribeButton({username}) {
 
     let[isSubscribed, setSubscribed] = React.useState(false)
     async function subscribe(){
-       await axios.put("http://localhost:5000/user/subscribe",
+       await axios.put("https://article-api-cookies-instead-of.onrender.com/user/subscribe",
 
        {
             username: username
@@ -27,7 +27,7 @@ function SubscribeButton({username}) {
 
     React.useEffect(()=>{
 
-        axios.get(`http://localhost:5000/user/subscribed/${username}/check`,{
+        axios.get(`https://article-api-cookies-instead-of.onrender.com/user/subscribed/${username}/check`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
