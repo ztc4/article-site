@@ -56,6 +56,7 @@ function AddArticles() {
            }).then(res =>{
                 alert("image was saved")
             })
+            .catch(alert("couldnt create it"))
 
         }
         
