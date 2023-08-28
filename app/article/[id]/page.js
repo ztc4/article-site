@@ -28,7 +28,7 @@ async function Article(query) {
     console.log(2,data)
     let text = data.articleText[0].split("*8^,")
     let articleText = text.map(
-        current =>   <p key={current} className="sm:text-center pl-4  font-light my-4 text-sm">{current.replace("*8^","")}</p>
+        current =>   <p key={current} className="sm:text-center pl-4 font-medium md:mx-12  font-light my-4 text-sm">{current.replace("*8^","")}</p>
     )
     return ( 
     <div className="w-screen h-min-screen flex flex-col justify-center">

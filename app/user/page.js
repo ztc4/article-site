@@ -68,7 +68,7 @@ function Social() {
                     width={50} height={50} 
                     className="rounded-full hover:cursor-pointer"
                     src={`https://article-api-cookies-instead-of.onrender.com/users/${user.id}/avatar`} 
-                    alt="article image"/>: 
+                    alt="avatar image"/>: 
                     <div 
                     onClick={()=>router.push(`/profile/${user.username}`)}
                     className=" border hover:cursor-pointer bg-yellow-600 rounded-full h-12 w-12"/>}

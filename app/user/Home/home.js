@@ -19,7 +19,7 @@ function HomePage() {
     
     return ( 
         <div>
-              {search.mainSearchLast && <p className="mt-12 text-center">Popular Articles</p>}
+              {<p className="my-4 text-center">Popular Articles</p>}
             
 
             <Container>

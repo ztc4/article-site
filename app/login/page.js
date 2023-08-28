@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../Components/Button/button";
 import Input from "../Components/Input/input";
 import Link from "next/link";
@@ -17,6 +17,9 @@ function Login() {
     // cookieCutter.set("name","lee")
     // let name = cookieCutter.get("token")
     // console.log(name)
+    useEffect(()=>{
+        alert("Logging in usually takes a bit of time due to the site not being as active!")
+    },[])
 
   
 

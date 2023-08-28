@@ -17,7 +17,7 @@ function CreatedArticles() {
     }
     return ( 
     <div>
-            {articles.length > 0 && <p className="mt-12 text-center">You have posted {"1"} articles</p>}
+            {articles.length > 0 && <p className="mt-12 text-center">You have posted  articles</p>}
             
 
             <Container>
