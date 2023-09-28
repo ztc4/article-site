@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
-
+import {motion} from "framer-motion"
 
 function Article({data}) {
     const { push } = useRouter()
@@ -18,7 +18,11 @@ function Article({data}) {
   
     let background = `https://article-api-cookies-instead-of.onrender.com/articles/${data._id}/posterImage`
     return ( 
-        <div className="w-[300px] border-1 overflow-hidden shadow-xl hover: cursor-pointer rounded-lg" onClick={redirect}>
+        <motion.div
+        whileHover={{scale:1.02}}
+        transition={{duration:0.7}}
+        
+        className="w-[300px] border-1 overflow-hidden shadow-xl hover: cursor-pointer rounded-lg" onClick={redirect}>
 
         <Image 
         width={50} height={200}  
@@ -40,7 +44,7 @@ function Article({data}) {
 
 
 
-        </div>
+        </motion.div>
      );
 }
 
