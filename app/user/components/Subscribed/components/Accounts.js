@@ -1,7 +1,7 @@
-import Button from "@/app/Components/Button/button";
-import Container from "@/app/Components/Container/container";
-import User from "@/app/Components/User/user";
-import { UserContext } from "@/app/user/context/userContext";
+import Button from "../../../../Components/Button/button";
+import Container from "../../../../Components/Container/container";
+import User from "../../../../Components/User/user";
+import { UserContext } from "../../../context/userContext";
 
 import React from "react";
 

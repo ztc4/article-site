@@ -1,5 +1,5 @@
-import Input from "@/app/Components/Input/input";
-import { UserContext } from "@/app/user/context/userContext";
+import Input from "../../../../Components/Input/input"
+import { UserContext } from "../../../context/userContext";
 import axios from "axios";
 import React from "react";
 import cookieCutter from "cookie-cutter"

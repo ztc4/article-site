@@ -3,7 +3,7 @@ import React from "react";
 import ProfileArticles from "./component/latest";
 import SubscribeButton from "./component/subscribeButton";
 import { cookies } from 'next/headers'
-import BackButton from "@/app/article/[id]/components/backButton";
+
 
 async function getProfile(id){
     

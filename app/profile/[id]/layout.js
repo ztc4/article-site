@@ -1,4 +1,4 @@
-import BackButton from "@/app/article/[id]/components/backButton";
+import BackButton from "../../article/components/backButton";
 
 function Layout({children}) {
     return ( 

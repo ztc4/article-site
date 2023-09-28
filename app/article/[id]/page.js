@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
-import BackButton from "./components/backButton";
-import LikeButton from "./components/likeButton";
+import BackButton from "../components/backButton";
+import LikeButton from "../components/likeButton";
 
 async function getArticle(id){
     

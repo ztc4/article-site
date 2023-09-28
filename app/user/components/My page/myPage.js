@@ -1,4 +1,4 @@
-import NText from "@/app/Components/Text/n-text";
+import NText from "../../../Components/Text/n-text";
 import React from "react";
 import CreatedArticles from "./components/Created";
 import AddArticles from "./components/AddArticle";

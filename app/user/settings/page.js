@@ -6,7 +6,7 @@ import { UserContext } from "../context/userContext"
 import Image from "next/image"
 import axios from "axios"
 import Layout from "./layout"
-import BackButton from "@/app/article/[id]/components/backButton"
+import BackButton from "../../article/components/backButton"
 
 import cookieCutter from "cookie-cutter"
 

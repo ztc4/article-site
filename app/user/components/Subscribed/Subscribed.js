@@ -2,7 +2,7 @@
 import React from "react";
 import Accounts from "./components/Accounts";
 import Articles from "./components/Articles";
-import NText from "@/app/Components/Text/n-text";
+import NText from "../../../Components/Text/n-text";
 import { UserContext } from "../../context/userContext";
 
 

@@ -1,8 +1,8 @@
-import Article from "@/app/Components/Article/article";
-import Button from "@/app/Components/Button/button";
-import Container from "@/app/Components/Container/container";
+import Article from "../../../../Components/Article/article";
+import Button from "../../../../Components/Button/button";
+import Container from "../../../../Components/Container/container";
 
-import { UserContext } from "@/app/user/context/userContext";
+import { UserContext } from "../../../context/userContext";
 import React from "react";
 function Articles() {
     let buttondata = {

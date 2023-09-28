@@ -2,8 +2,8 @@
 const nextConfig = {
 
     images: {
-        domains: ["article-api-cookies-instead-of.onrender.com"],
-        formats: ["image/avif"],
+        domains: ["article-api-cookies-instead-of.onrender.com","article-api-wd57.onrender", "article-api-cookies-instead-of.onrender"],
+        formats: ["image/avif","image/webp"],
     },
 }
 

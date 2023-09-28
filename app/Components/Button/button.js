@@ -1,7 +1,6 @@
 "use client"
 import React from "react";
 
-
 function Button({data, handleClick}) {
     return ( 
         <button 

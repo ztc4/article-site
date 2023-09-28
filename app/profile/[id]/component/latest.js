@@ -2,7 +2,7 @@
 import React from "react";
 
 import axios from "axios";
-import Article from "@/app/Components/Article/article";
+import Article from "../../../Components/Article/article";
 
 function ProfileArticles({username}) {
 

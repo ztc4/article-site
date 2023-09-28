@@ -1,10 +1,10 @@
 
 import React from "react";
 
-import Article from "@/app/Components/Article/article";
-import { UserContext } from "@/app/user/context/userContext";
-import Button from "@/app/Components/Button/button";
-import Container from "@/app/Components/Container/container";
+import Article from "../../../../Components/Article/article";
+import { UserContext } from "../../../context/userContext";
+import Button from "../../../../Components/Button/button";
+import Container from "../../../../Components/Container/container";
 function CreatedArticles() {
     const{data, PostedArticles}= React.useContext(UserContext)
     let articles = data.postedArticle.map(current => <Article key={current._id} data={current}/>)

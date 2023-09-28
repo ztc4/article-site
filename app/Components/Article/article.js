@@ -13,6 +13,7 @@ function Article({data}) {
     }
     
 
+
  
   
     let background = `https://article-api-cookies-instead-of.onrender.com/articles/${data._id}/posterImage`
