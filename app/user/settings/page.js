@@ -1,5 +1,5 @@
 "use client"
-import Input from "@/app/Components/Input/input"
+import Input from "../../Components/Input/input"
 import { useRouter } from "next/navigation"
 import React from "react"
 import { UserContext } from "../context/userContext"
