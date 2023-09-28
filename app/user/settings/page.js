@@ -58,7 +58,7 @@ function Settings() {
         formData.append("category",user.category)
         formData.append("about",user.about)
         if(avatar !== "" || avatar !== null || avatar !== undefined){
-
+            
             formData.append("avatar",avatar)
         }
     

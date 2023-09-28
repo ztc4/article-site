@@ -1,10 +1,11 @@
+"use client"
 import Image from 'next/image'
 import Article from './Components/Article/article'
 import Comment from './Components/Comment/comment'
 import Search from './Components/Search/search'
 import User from './Components/User/user'
 import Link from 'next/link'
-
+import {motion} from "framer-motion"
 
 export default function Home() {
   return (
@@ -20,7 +21,13 @@ export default function Home() {
             </Link>
           </div>
        </div>
-       <div className=' flex flex-col justify-center items-center sm:gap-3 '>
+       <motion.div
+            
+            initial={{x:-1000,opacity:0.7}}
+            animate={{x:0,opacity: 1}}
+            duration={{duration:0.4,delay: 0}} 
+            
+       className=' flex flex-col justify-center items-center sm:gap-3 '>
          <h2 className='font-semibold text-2xl xl:text-3xl text-center'>Craft,Share,Connect</h2>
          <p className='text-center sm:w-3/5 tracking-wide sm:text-lg font-medium'>Are you ready to bring your thoughts to life? Welcome to ArticleCraft,
            the ultimate platform for unleashing your creativity through beautifully
@@ -29,16 +36,28 @@ export default function Home() {
           articles that inspire, inform, and entertain.
           </p>
               
-       </div>
-       <div id="landing-iamge" className='w-full h-[400px] '>
+       </motion.div>
+       <motion.div
+            
+            initial={{opacity:0}}
+            whileInView={{opacity: 1}}
+            duration={{duration:3,delay: 0}} 
+            
+       id="landing-iamge" className='w-full h-[400px] '>
           <Image 
           height={2400}
           width={1600}
           className='object-center  sm:object-contain sm:w-full h-full '
           alt="Landing Page image"
           src={"/landing-page-image.png"}/>
-       </div>
-       <div className=' flex flex-col gap-1 justify-center items-center sm:gap-3 '>
+       </motion.div>
+       <motion.div 
+            
+            initial={{opacity:0.7}}
+            whileInView={{x:10,opacity: 1}}
+            duration={{duration:1,delay: 0}} 
+            
+       className=' flex flex-col gap-1 justify-center items-center sm:gap-3 '>
          <h2 className='font-semibold text-2xl xl:text-3xl text-center'>Join ArticleCraft Today!</h2>
          <p className='text-center sm:w-3/5 tracking-wide text-lg font-medium'>
          Embark on a journey of self-expression and connection.
@@ -64,8 +83,15 @@ export default function Home() {
 
           </div>
               
-       </div>
-       <div className=' mt-8 flex flex-col gap-1 justify-center items-center sm:gap-3 '>
+       </motion.div>
+       <motion.div
+       
+     
+       initial={{x:-300,opacity:0.7}}
+       whileInView={{x:10,opacity: 1}}
+       duration={{duration:1,delay: 0}} 
+       
+       className=' mt-8 flex flex-col gap-1 justify-center items-center sm:gap-3 '>
          <h2 className='font-medium text-xl xl:text-2xl '>Features That Empower You</h2>
          <ul className='p-4 gap-4'>
             <li className='text-center mb-8 text-lg font-normal'>
@@ -83,16 +109,8 @@ export default function Home() {
              Gain insights into the performance of your articles.
               Measure likes, engagement, and subscriptions to refine your content strategy and understand what resonates with your audience.
             </li>
-         </ul>
-
-
-
-
-         
-
-
-              
-       </div>
+         </ul>          
+       </motion.div>
    
    
     </main>
