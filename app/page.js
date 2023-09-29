@@ -10,15 +10,15 @@ import {motion} from "framer-motion"
 export default function Home() {
   return (
     <main className=" grid grid-cols-1 p-4 gap-12 md:px-56 w-screen overflow-x-hidden">
-       <div className='flex flex-row p-3 px-8 justify-between items-center '>
+       <div className='flex flex-row p-3 sm:px-8 justify-between items-center '>
           <h1 className='font-extrabold text-lg sm:text-2xl w-14 '>ARTICLECRAFT</h1>
-          <div className='flex sm:gap-2 flex-col sm:flex-row '>
+          <div className='flex gap-2  flex-row '>
             <Link href="/login" passHref>
-              <button className='font-bold hover:bg-gray-200 sm:p-2 sm:text-xl'>Login</button>
+              <button className='font-bold hover:bg-gray-200 outline min-[300px]:outline-none  p-1 rounded-md sm:rounded-none  sm:p-2 sm:text-xl'>Login</button>
             </Link>
-            {window.innerWidth > 500 && <Link href="/signup" passHref>
-              <button className='font-bold hover:bg-gray-200 sm:p-2 sm:text-xl'>Signup</button>
-            </Link>}
+           <Link href="/signup" passHref>
+              <button className='font-bold hidden min-[500px]:block p-1 hover:bg-gray-200 sm:p-2 sm:text-xl'>Signup</button>
+            </Link>
           </div>
        </div>
        <motion.div
