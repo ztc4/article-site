@@ -28,7 +28,7 @@ export default function Home() {
             duration={{duration:0.4,delay: 0}} 
             
        className=' flex flex-col justify-center items-center sm:gap-3 '>
-         <h2 className='font-semibold text-2xl xl:text-3xl text-center'>Craft,Share,Connect</h2>
+         <h2 className='font-semibold mb-2 text-2xl xl:text-3xl text-center'>Craft,Share,Connect</h2>
          <p className='text-center sm:w-4/5 tracking-wide sm:text-lg font-medium'>Are you ready to bring your thoughts to life? Welcome to ArticleCraft,
            the ultimate platform for unleashing your creativity through beautifully
           crafted articles. Whether you&apos;re a seasoned writer or just starting your
@@ -46,7 +46,7 @@ export default function Home() {
        id="landing-iamge" className='w-full h-[400px] '>
           <Image 
           height={2400}
-          width={1600}
+          width={2400}
           className='object-center  sm:object-contain sm:w-full h-full '
           alt="Landing Page image"
           src={"/landing-page-image.png"}/>
@@ -58,7 +58,7 @@ export default function Home() {
             duration={{duration:1,delay: 0}} 
             
        className=' flex flex-col gap-1 justify-center items-center sm:gap-3 '>
-         <h2 className='font-semibold text-2xl xl:text-3xl text-center'>Join ArticleCraft Today!</h2>
+         <h2 className='font-semibold text-2xl xl:text-3xl text-center mb-2'>Join ArticleCraft Today!</h2>
          <p className='text-center sm:w-4/5 tracking-wide text-lg font-medium'>
          Embark on a journey of self-expression and connection.
           Whether you&apos;re an aspiring author, an experienced wordsmith,
