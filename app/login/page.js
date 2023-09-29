@@ -98,7 +98,7 @@ function Login() {
                 
                 > Click here to Signup </motion.span> </motion.span></Link>
                 <div className="text-center  font-semibold text-red-600 flex  justify-center">
-                    <motion.div whileHover={{backgroundColor:"#FF000077"}} className="border-red-600 border-2 p-1 rounded-3xl">Trouble logging in<ErrorTwoTone/></motion.div>
+                   {error &&  <motion.div whileHover={{backgroundColor:"#FF000077"}} className="border-red-600 border-2 p-1 rounded-3xl">Trouble logging in<ErrorTwoTone/></motion.div>}
                 </div>
                 
                 <Button data={buttondata} handleClick={ButtonHandleClick}/>
