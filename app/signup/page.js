@@ -76,7 +76,7 @@ function Signup() {
         console.log(!valid ? "It isnt' valid": "It is valid")
        if(valid !== true) return
         setIsLoading(true)
-        axios.post(`http://100.26.60.152:5000/signup`,{
+        axios.post(`https://article-api-cookies-instead-of.onrender.com/signup`,{
             firstname:signup.fname.trim(),
             lastname:signup.lname.trim(),
             age:signup.age,

@@ -11,7 +11,7 @@ function ProfileArticles({username}) {
 
     React.useEffect(()=>{
         console.log("getting data")
-      axios.get(`http://100.26.60.152:5000/article/profile/${username}`)
+      axios.get(`https://article-api-cookies-instead-of.onrender.com/article/profile/${username}`)
         .then(res=>
            setData(res.data)
         )

@@ -22,7 +22,7 @@ function Social() {
     let [searchResults, setSearchResults] = React.useState([])  
     
     async function MainSearch(){
-        await axios.get(`http://100.26.60.152:5000/search?search=${search.mainSearch}`).catch(
+        await axios.get(`https://article-api-cookies-instead-of.onrender.com/search?search=${search.mainSearch}`).catch(
          res => console.log(res)
         )
         .then( res => setSearchResults(res.data))
@@ -67,7 +67,7 @@ function Social() {
                     onClick={()=>router.push(`/profile/${user.username}`)}
                     width={50} height={50} 
                     className="rounded-full hover:cursor-pointer"
-                    src={`http://100.26.60.152:5000/users/${user.id}/avatar`} 
+                    src={`https://article-api-cookies-instead-of.onrender.com/users/${user.id}/avatar`} 
                     alt="avatar image"/>: 
                     <div 
                     onClick={()=>router.push(`/profile/${user.username}`)}

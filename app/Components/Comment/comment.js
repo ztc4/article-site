@@ -13,7 +13,7 @@ function Comment({data}) {
             <div className=" w-2/12 justify-center">
                 {data._id !== "" ? 
                 <Image width={100} height={100}  
-                src={`http://100.26.60.152:5000/users/${data._id}/avatar`} alt="article image"/>: 
+                src={`https://article-api-cookies-instead-of.onrender.com/users/${data._id}/avatar`} alt="article image"/>: 
                 <div className=" border bg-red-600 rounded-full h-12 w-12"/>}
                 
             </div>
