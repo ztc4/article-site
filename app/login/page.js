@@ -51,7 +51,7 @@ function Login() {
         formData.append("password",login.password)
     
         axios.put(
-            `https://article-api-cookies-instead-of.onrender.com/login`,{
+            `http://100.26.60.152:5000/login`,{
              username:login.username,
                password:login.password
             }

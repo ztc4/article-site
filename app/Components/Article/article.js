@@ -16,7 +16,7 @@ function Article({data}) {
 
  
   
-    let background = `https://article-api-cookies-instead-of.onrender.com/articles/${data._id}/posterImage`
+    let background = `http://100.26.60.152:5000/articles/${data._id}/posterImage`
     return ( 
         <motion.div
         whileHover={{scale:1.02}}
@@ -27,7 +27,7 @@ function Article({data}) {
         <Image 
         width={50} height={200}  
         className="w-full h-[200px] object-cover"
-        src={`https://article-api-cookies-instead-of.onrender.com/articles/${data._id}/posterImage`}
+        src={`http://100.26.60.152:5000/articles/${data._id}/posterImage`}
         alt="Article Image"/>
         <div className="p-4">
             <h4 className="title-text">{data.title}</h4>

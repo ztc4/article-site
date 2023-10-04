@@ -7,7 +7,7 @@ import cookieCutter from "cookie-cutter"
 function LikeButton({id}) {
     let[isLiked,setLiked] = React.useState(false)
     async function LikeArticle(){
-        axios.put("https://article-api-cookies-instead-of.onrender.com/article/like",{
+        axios.put("http://100.26.60.152:5000/article/like",{
             articleId: id
         },{
            headers:{
@@ -21,7 +21,7 @@ function LikeButton({id}) {
 
     React.useEffect(()=>{
 
-        axios.get(`https://article-api-cookies-instead-of.onrender.com/article/${id}/isliked`,{
+        axios.get(`http://100.26.60.152:5000/article/${id}/isliked`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
