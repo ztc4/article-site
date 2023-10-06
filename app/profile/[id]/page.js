@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 
 async function getProfile(id){
     
-    let data = fetch(`https://article-api-cookies-instead-of.onrender.com/user/${id}`,{
+    let data = fetch(`https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/user/${id}`,{
         method: "GET",
         cache: 'no-cache'
     
@@ -34,7 +34,7 @@ async function Profile(query) {
                 <div className="flex flex-col sm:flex-row gap-3 flex-wrap ">
                     <div className=" bg-gray-200 rounded-2xl p-4">
                         <Image 
-                            className=" color4 drop-shadow h-16 w-16 rounded-full "
+                            className=" color4 drop-shadow rotate-90 h-16 w-16 rounded-full "
                             src={`https://article-api-cookies-instead-of.onrender.com/users/${data._id}/avatar`} 
                             width={50} height={50} alt="News article poster Image"
                             loading="lazy"

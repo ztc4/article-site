@@ -8,7 +8,7 @@ import LikeButton from "../components/likeButton";
 
 async function getArticle(id){
     
-    let data = fetch(`https://article-api-cookies-instead-of.onrender.com/article/${id}`,{
+    let data = fetch(`https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/article/${id}`,{
         method: "GET",
         cache: 'no-cache'
     

@@ -10,7 +10,7 @@ function Comment({data}) {
     }
     return ( 
         <div className="flex flex-row p-1 card w-full sm:w-80 " onClick={handleClick}>
-            <div className=" w-2/12 justify-center">
+            <div className="rotate-90 w-2/12 justify-center">
                 {data._id !== "" ? 
                 <Image width={100} height={100}  
                 src={`https://article-api-cookies-instead-of.onrender.com/users/${data._id}/avatar`} alt="article image"/>: 

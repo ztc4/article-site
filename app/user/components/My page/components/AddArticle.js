@@ -49,7 +49,7 @@ function AddArticles() {
             formData.append("title",newArticle.title)
             formData.append("articleText",newArticle.article)
             formData.append("category",newArticle.category)
-           await  axios.post("https://article-api-cookies-instead-of.onrender.com/article/add", formData,{
+           await  axios.post("https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/article/add", formData,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }

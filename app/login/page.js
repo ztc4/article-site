@@ -51,7 +51,7 @@ function Login() {
         formData.append("password",login.password)
     
         axios.put(
-            `https://article-api-cookies-instead-of.onrender.com/login`,{
+            `https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/login`,{
              username:login.username,
                password:login.password
             }

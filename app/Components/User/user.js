@@ -25,7 +25,7 @@ function User({data}) {
                     <Image 
                     
                     width={50} height={50} 
-                    className="rounded-full hover:cursor-pointer"
+                    className="rounded-full rotate-90 hover:cursor-pointer"
                     src={`https://article-api-cookies-instead-of.onrender.com/users/${data._id}/avatar`} 
                     alt="article image"
                     onError={ setError(true)}
