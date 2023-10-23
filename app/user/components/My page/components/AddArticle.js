@@ -6,6 +6,7 @@ import cookieCutter from "cookie-cutter"
 function AddArticles() {
 
     const{newArticle, setNewArticle}= React.useContext(UserContext)
+    const [isLoading,setIsLoading] = React.useState(false)
 
     const [image1,setImage] = React.useState()
     let title={
@@ -42,21 +43,26 @@ function AddArticles() {
 
         console.log(image1)
 
-        async function sendImage() {
+        function sendImage() {
 
             const formData = new FormData();
             formData.append("posterImage",image1)
             formData.append("title",newArticle.title)
             formData.append("articleText",newArticle.article)
             formData.append("category",newArticle.category)
-           await  axios.post("https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/article/add", formData,{
+            setIsLoading(true)
+           axios.post("https://article-api-cookies-instead-of.onrender.com/article/add", formData,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
            }).then(res =>{
-                alert("image was saved")
-            })
-            .catch(alert("couldnt create it"))
+            
+            
+            alert("Article added")})
+        .catch(res => alert("couldnt create it"))
+        .finally(()=>{
+            setIsLoading(false)
+        })
 
         }
         
@@ -93,7 +99,7 @@ function AddArticles() {
             }))} className="bg-gray-200 rounded-full p-4"> add paragraph</button>
             {newArticle.article.map(current => <p key={current}>{current.replace("*8^","")}</p>)}
             
-            <button onClick={sendImage} className="bg-gray-200 rounded-full p-4"> send Image</button>
+            <button onClick={sendImage} className="bg-gray-200 rounded-full p-4" disabled={isLoading}>Upload</button>
             
             
 
