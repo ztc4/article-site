@@ -76,7 +76,7 @@ function Signup() {
         console.log(!valid ? "It isnt' valid": "It is valid")
        if(valid !== true) return
         setIsLoading(true)
-        axios.post(`https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/signup`,{
+        axios.post(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/signup`,{
             firstname:signup.fname.trim(),
             lastname:signup.lname.trim(),
             age:signup.age,
@@ -89,7 +89,7 @@ function Signup() {
         
         .then(res => cookieCutter.set("token", res.data))
         .then(res => router.push("user") )
-        .catch(error => {alert(error);setIsLoading(false); setError("Error, Username or Email is most likely taken!")})
+        .catch(error => {setIsLoading(false); setError("Error, Username or Email is most likely taken!")})
         
       
 

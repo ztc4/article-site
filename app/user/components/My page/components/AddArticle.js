@@ -3,6 +3,8 @@ import { UserContext } from "../../../context/userContext";
 import axios from "axios";
 import React from "react";
 import cookieCutter from "cookie-cutter"
+import { resolve } from "styled-jsx/css";
+import Image from "next/image";
 function AddArticles() {
 
     const{newArticle, setNewArticle}= React.useContext(UserContext)
@@ -41,28 +43,71 @@ function AddArticles() {
 
         }
 
-        console.log(image1)
+       
 
-        function sendImage() {
+        async function submitForm() {
 
-            const formData = new FormData();
-            formData.append("posterImage",image1)
-            formData.append("title",newArticle.title)
-            formData.append("articleText",newArticle.article)
-            formData.append("category",newArticle.category)
+         
+            let type = null
+            if(image1?.type){
+                type = image1.type
+
+            }
+            
+
             setIsLoading(true)
-           axios.post("https://article-api-cookies-instead-of.onrender.com/article/add", formData,{
-            headers:{
+            //"https://article-api-cookies-instead-of.onrender.com/article/add"
+           let result = await axios.post("https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/add", 
+           {
+            title:newArticle.title,
+            articleText:newArticle.article,
+            category:newArticle.category,
+            type
+           },
+           {
+            headers:
+            {
                 Authorization : `Bearer ${cookieCutter.get("token")}`
-               }
-           }).then(res =>{
-            
-            
-            alert("Article added")})
-        .catch(res => alert("couldnt create it"))
-        .finally(()=>{
+            }
+           }
+           )
+           .then(res => res)
+           .catch(err => {console.log(err); return err.response})
+
+           console.log(1,result)
+           if(result.status !== 200){
             setIsLoading(false)
-        })
+            alert("failed to create article")
+            return 
+
+           }
+           else if(result.data.image == null){
+
+            setNewArticle(current=> ({
+                ...current,
+                title:"",
+                category:"",
+                articleText:""
+                  }))
+            setIsLoading(false)
+            return alert("article created")
+
+           }
+        let response = await axios.put(result.data.url, image1, {
+            headers: {
+              'Content-Type': type// adjust if other types are needed
+            }
+          })
+          setNewArticle(current=> ({
+        ...current,
+        title:"",
+        category:"",
+        articleText:""
+          }))
+          setIsLoading(false)
+          
+ 
+           
 
         }
         
@@ -70,7 +115,7 @@ function AddArticles() {
 
 
     return ( 
-        <div className="px-4 py-4 sm:p-8 mx-auto gap-4 rounded-2xl drop-shadow-lg w-full sm:w-8/12 bg-slate-300 flex flex-col">
+        <div className="px-4 py-4 sm:p-8 mx-auto gap-4 rounded-2xl -z-10 drop-shadow-lg w-full sm:w-8/12 bg-slate-300 flex flex-col">
             <h2 className="-mb-4">Title:</h2>
             <Input data={title} handleChange={handleChange}/>
             <h2 className="-mb-4">Select Category:</h2>
@@ -99,7 +144,13 @@ function AddArticles() {
             }))} className="bg-gray-200 rounded-full p-4"> add paragraph</button>
             {newArticle.article.map(current => <p key={current}>{current.replace("*8^","")}</p>)}
             
-            <button onClick={sendImage} className="bg-gray-200 rounded-full p-4" disabled={isLoading}>Upload</button>
+            <button onClick={submitForm} className="bg-gray-200 rounded-full p-4" disabled={isLoading}>
+                
+                {!isLoading ?
+                 "Add Article" : 
+                 <Image width={20} height={20} class=" ml-3 inline-block animate-spin  h-8 w-8" alt="loading" src="/loading-20.svg"/>}
+                 
+            </button>
             
             
 

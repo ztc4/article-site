@@ -16,8 +16,8 @@ function Article({data}) {
 
  
   
-    let background = `https://article-api-cookies-instead-of.onrender.com/articles/${data._id}/posterImage`
-    console.log("background: " + background)
+   
+
     return ( 
         <motion.div
         whileHover={{scale:1.02}}
@@ -26,9 +26,9 @@ function Article({data}) {
         className="w-[300px] border-1 overflow-hidden shadow-xl hover: cursor-pointer rounded-lg" onClick={redirect}>
 
         <Image 
-        width={50} height={200}  
+        width={2000} height={2000}  
         className="w-full h-[200px] object-cover"
-        src={`https://article-api-cookies-instead-of.onrender.com/articles/${data._id}/posterImage`}
+        src={`https://article-website-images.s3.amazonaws.com/${data._id}.webp`}
         alt="Article Image"/>
         <div className="p-4">
             <h4 className="title-text">{data.title}</h4>

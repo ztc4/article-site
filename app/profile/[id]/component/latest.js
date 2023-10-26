@@ -11,7 +11,7 @@ function ProfileArticles({username}) {
 
     React.useEffect(()=>{
         console.log("getting data")
-      axios.get(`https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/article/profile/${username}`)
+      axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/profile/${username}`)
         .then(res=>
            setData(res.data)
         )

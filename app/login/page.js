@@ -51,13 +51,13 @@ function Login() {
         formData.append("password",login.password)
     
         axios.put(
-            `https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/login`,{
+            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/login`,{
              username:login.username,
                password:login.password
             }
         )
         .catch( res => {alert("couldn't login"); setIsLoading(false); setError(true)})
-        .then(res => cookieCutter.set("token", res.data))
+        .then(res => {cookieCutter.set("token", res.data)})
         .then(res =>{push("user")})
     }
 

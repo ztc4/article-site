@@ -12,11 +12,12 @@ import cookieCutter from "cookie-cutter"
 
 function Settings() {
     const{user,setUser}= React.useContext(UserContext)
+    const [isLoading,setIsLoading] = React.useState(false)
     const router = useRouter()
 
 
 
-    let[avatar,setAvatar] = React.useState()
+    let[avatar,setAvatar] = React.useState("")
 
     let usernameInput={
         placeholder: "Enter the username", 
@@ -37,7 +38,7 @@ function Settings() {
     function handleChange(e){
         setUser( current=>({
             ...current,
-            [e.target.id]: [e.target.value]
+            [e.target.id]: e.target.value
         }))
 
     }
@@ -51,19 +52,24 @@ function Settings() {
     console.log(user)
 
     //UPDATE
-    function ButtonHandleClick(){
+    async function ButtonHandleClick(){
+        setIsLoading(true)
         
-        const formData = new FormData()
-        
-        formData.append("category",user.category)
-        formData.append("about",user.about)
-        if(avatar !== "" || avatar !== null || avatar !== undefined){
-            
-            formData.append("avatar",avatar)
+
+
+        let type = null
+        if(avatar?.type){
+            type = avatar.type
+
         }
     
-        axios.put(
-            `https://article-api-cookies-instead-of.onrender.com/user/avatar`,formData,
+        let result = await axios.put(
+            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/avatar`,
+            {
+                category: user.category,
+                about: user.about,
+                type
+            },
             {
                 headers:{
                     Authorization : `Bearer ${cookieCutter.get("token")}`
@@ -71,12 +77,38 @@ function Settings() {
             }
 
         )
-        .catch( res => alert("Having trouble saving"))
-        // .then(res =>{router.push("user")})
+        .then(res => res)
+        .catch(err => {alert(err); return err.response})
+        
+
+
+        if(result.status !== 200){
+            setIsLoading(false)
+            alert("failed to change profile")
+            return 
+
+        }
+        else if(result.data.image == null){
+            setIsLoading(false)
+            return alert("user information changed")
+
+           }
+
+
+        let response = await axios.put(result.data.url, avatar, {
+            headers: {
+              'Content-Type': type// adjust if other types are needed
+            }
+          })
+          setIsLoading(false)
+          return alert("user information including image is changed!")
+          console.log(response)
     }
+
+
     function Logout(){
         axios.put(
-            `https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/logout`,{
+            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/logout`,{
 
             },
             {
@@ -91,7 +123,7 @@ function Settings() {
     }
     function LogoutAll() {
         axios.put(
-            `https://ld3ydacyy9.execute-api.us-east-1.amazonaws.com/dev/logoutAll`,{
+            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/logoutAll`,{
 
             },
             {
@@ -116,8 +148,8 @@ function Settings() {
                     <div className="h-24 w-24  rounded-full">
                         <Image 
                                 className=" color4 w-full border rotate-90 h-24 rounded-full  drop-shadow object-cover  "
-                                src={`https://article-api-cookies-instead-of.onrender.com/users/${user.id}/avatar`} 
-                                width={50} height={50} alt="News article poster Image"
+                                src={`https://article-website-images.s3.amazonaws.com/${user.id}.webp`}
+                                width={500} height={500} alt="News article poster Image"
                                 loading="lazy"
                                 />
                     </div>
@@ -147,7 +179,14 @@ function Settings() {
                     value={user.about}
                     autoComplete="on" 
                     cols={8}/>
-                <button onClick={ButtonHandleClick} className="bg-gray-200 rounded-full p-4">Save</button>
+                <button onClick={ButtonHandleClick} 
+                disabled={isLoading}
+                className="bg-gray-200 rounded-full p-4">
+                    
+                {!isLoading ?
+                 "Update" : 
+                 <Image width={20} height={20} class=" ml-3 inline-block animate-spin  h-8 w-8" alt="loading" src="/loading-20.svg"/>}
+                </button>
 
                 
 
