@@ -1,9 +1,9 @@
 import React from "react";
 import { UserContext } from "../context/userContext";
 
-import Button from "../../Components/Button/button"
-import Article from "../../Components/Article/article";
-import Container from "../../Components/Container/container";
+import Button from "./Button/button"
+import Article from "./Article/article";
+import Container from "./Container/container";
 
 function HomePage() {
     const{data, MainArticles,search}= React.useContext(UserContext)
@@ -28,11 +28,11 @@ function HomePage() {
                 {articles.length == 0 && <p className="mt-12">No Articles Found</p>}
                 
             </Container>
-            {articles.length % 10 == 0   ?
+            {articles.length !== 0 &&  articles.length % 10 == 0   ?
                 <div className="p-8">
                     <Button data={buttondata} handleClick={MainArticles}/>
                 </div>:
-                <p className="text-center mt-4">There are no more articles</p>
+                <p className="text-center mt-4">{ articles.length !== 0 && "There are no more articles"}</p>
                 
                 }
         </div>

@@ -1,7 +1,7 @@
-import Button from "../../../../Components/Button/button";
-import Container from "../../../../Components/Container/container";
-import User from "../../../../Components/User/user";
-import { UserContext } from "../../../context/userContext";
+import Button from "./Button/button";
+import Container from "./Container/container";
+import User from "./User/user";
+import { UserContext } from "../context/userContext";
 
 import React from "react";
 
@@ -23,11 +23,11 @@ function Accounts() {
             {users.length == 0 && <p className="mt-12">You haven&apos;t subscribed to anyone</p>}
 
         </Container>
-        {users.length % 10 == 0   ?
+        { users.length !== 0 && users.length % 10 == 0   ?
                 <div className="p-8">
                     <Button data={buttondata} handleClick={GetSubscribedUsers}/>
                 </div>:
-                <p className="text-center mt-4">There are no more users</p>
+                <p className="text-center mt-4">{ users.length !== 0 && "There are no more users"}</p>
                 
                 }
         </div>

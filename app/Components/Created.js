@@ -1,10 +1,10 @@
 
 import React from "react";
 
-import Article from "../../../../Components/Article/article";
-import { UserContext } from "../../../context/userContext";
-import Button from "../../../../Components/Button/button";
-import Container from "../../../../Components/Container/container";
+import Article from "./Article/article";
+import { UserContext } from "../context/userContext";
+import Button from "./Button/button";
+import Container from "./Container/container";
 function CreatedArticles() {
     const{data, PostedArticles}= React.useContext(UserContext)
     let articles = data.postedArticle.map(current => <Article key={current._id} data={current}/>)
@@ -26,11 +26,11 @@ function CreatedArticles() {
                 {articles.length == 0 && <p className="mt-12">You haven&apos;t posted an article</p>}
                 
             </Container>
-            {articles.length % 10 == 0   ?
+            {articles.length !== 0 &&  articles.length % 10 == 0   ?
                 <div className="p-8">
                     <Button data={buttondata} handleClick={PostedArticles}/>
                 </div>:
-                <p className="text-center mt-4">There are no more articles</p>
+               <p className="text-center mt-4">{ articles.length !== 0 && "There are no more articles"}</p>
                 
                 }
         </div>

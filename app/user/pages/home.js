@@ -1,8 +1,7 @@
-import NText from "../../../Components/Text/n-text";
+import NText from "../../Components/Text/n-text";
 import React from "react";
-import CreatedArticles from "./components/Created";
-import AddArticles from "./components/AddArticle";
-import Subscribed from "../Subscribed/Subscribed";
+import CreatedArticles from "../../Components/Created";
+import AddArticles from "../../Components/AddArticle";
 import Subscribers from "./components/Subscribers";
 import LikedArticles from "./components/LikedArticle";
 import { UserContext } from "../../context/userContext";

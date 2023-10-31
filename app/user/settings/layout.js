@@ -1,4 +1,4 @@
-import BackButton from "../../article/components/backButton"
+import BackButton from "../../Components/backButton"
 
 function Layout({children}) {
     return ( 

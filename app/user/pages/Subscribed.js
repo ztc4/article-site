@@ -1,8 +1,8 @@
 
 import React from "react";
-import Accounts from "./components/Accounts";
-import Articles from "./components/Articles";
-import NText from "../../../Components/Text/n-text";
+import Accounts from "../../Components/Accounts";
+import Articles from "../../Components/Articles";
+import NText from "../../Components/Text/n-text";
 import { UserContext } from "../../context/userContext";
 
 

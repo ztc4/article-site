@@ -1,13 +1,14 @@
 "use client"
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Favorite, FavoriteBorder,DeleteOutline } from "@mui/icons-material";
 import axios from "axios";
 import React from "react";
 import cookieCutter from "cookie-cutter"
 
 function LikeButton({id}) {
-    let[isLiked,setLiked] = React.useState(false)
+    let [isLiked,setLiked] = React.useState(false)
+    let [userArticle, setUserArticle] = React.useState(true)
     async function LikeArticle(){
-        axios.put("https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/like",{
+        axios.put("http://localhost:3000/dev/article/like",{
             articleId: id
         },{
            headers:{
@@ -21,7 +22,7 @@ function LikeButton({id}) {
 
     React.useEffect(()=>{
 
-        axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/${id}/isliked`,{
+        axios.get(`http://localhost:3000/dev/article/${id}/isliked`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -32,11 +33,12 @@ function LikeButton({id}) {
 
     },[])
     return ( 
-        <div className={`w-fill h-full flex   justify-center items-center`} onClick={LikeArticle}>
+        <div className={`w-fill h-full flex flex-col justify-center items-center`} onClick={LikeArticle}>
             
             {isLiked ? 
             <Favorite className="text-red-600 text-4xl"/> :
              <FavoriteBorder className="text-4xl"/>}
+
 
 
         </div>

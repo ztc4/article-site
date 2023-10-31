@@ -2,11 +2,11 @@
 import Input from "../../Components/Input/input"
 import { useRouter } from "next/navigation"
 import React from "react"
-import { UserContext } from "../context/userContext"
+import { UserContext } from "../../context/userContext"
 import Image from "next/image"
 import axios from "axios"
 import Layout from "./layout"
-import BackButton from "../../article/components/backButton"
+import BackButton from "../../Components/backButton"
 
 import cookieCutter from "cookie-cutter"
 
@@ -64,7 +64,7 @@ function Settings() {
         }
     
         let result = await axios.put(
-            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/avatar`,
+            `http://localhost:3000/dev/user/avatar`,
             {
                 category: user.category,
                 about: user.about,
@@ -108,7 +108,7 @@ function Settings() {
 
     function Logout(){
         axios.put(
-            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/logout`,{
+            `http://localhost:3000/dev/logout`,{
 
             },
             {
@@ -123,7 +123,7 @@ function Settings() {
     }
     function LogoutAll() {
         axios.put(
-            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/logoutAll`,{
+            `http://localhost:3000/dev/logoutAll`,{
 
             },
             {
@@ -148,7 +148,7 @@ function Settings() {
                     <div className="h-24 w-24  rounded-full">
                         <Image 
                                 className=" color4 w-full border rotate-90 h-24 rounded-full  drop-shadow object-cover  "
-                                src={`https://article-website-images.s3.amazonaws.com/${user.id}.webp`}
+                                src="/image-1"
                                 width={500} height={500} alt="News article poster Image"
                                 loading="lazy"
                                 />

@@ -1,11 +1,11 @@
 "use client"
 
 import React, { useEffect } from "react";
-import Subscribed from "./components/Subscribed/Subscribed";
+import Subscribed from "./pages/Subscribed";
 
-import HomePage from "./Home/home";
-import MyPage from "./components/My page/myPage";
-import { UserContext } from "./context/userContext";
+import HomePage from "../Components/home";
+import MyPage from "./pages/personal";
+import { UserContext } from "../context/userContext";
 import NText from "../Components/Text/n-text";
 import Image from "next/image";
 import Search from "../Components/Search/search";
@@ -22,7 +22,7 @@ function Social() {
     let [searchResults, setSearchResults] = React.useState([])  
     
     async function MainSearch(){
-        await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/search?search=${search.mainSearch}`).catch(
+        await axios.get(`http://localhost:3000/dev/search?search=${search.mainSearch}`).catch(
          res => console.log(res)
         )
         .then( res => setSearchResults(res.data))
@@ -61,13 +61,13 @@ function Social() {
     }
     return ( 
         <div  className="grid gap-8 grid-cols-1">
-            <div className="flex gap-3 flex-row items-center fixed  w-full z-20   px-8 h-16 color4">
+            <div className="flex gap-3 flex-row items-center fixed  w-full z-20 justify-between   px-8 h-16 color4">
                     {user? 
                     <Image 
                     onClick={()=>router.push(`/profile/${user.username}`)}
                     width={500} height={500} 
                     className="rounded-full object-cover rotate-90 h-12 w-12 hover:cursor-pointer"
-                    src={`https://article-website-images.s3.amazonaws.com/${user.id}.webp`} 
+                    src="/image-1" 
                     alt="avatar image"/>: 
                     <div 
                     onClick={()=>router.push(`/profile/${user.username}`)}

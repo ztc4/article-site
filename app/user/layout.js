@@ -3,17 +3,20 @@
 import axios from "axios";
 import Search from "../Components/Search/search";
 import NText from "../Components/Text/n-text";
-import { UserContext } from "./context/userContext";
+import { UserContext } from "../context/userContext";
 import React from "react";
 import { useParams, useRouter } from "next/navigation";
 import { CurrencyYenTwoTone, Settings } from "@mui/icons-material";
 import Image from "next/image";
 import cookieCutter from "cookie-cutter";
+import { usePathname } from 'next/navigation'
+import { Add } from "@mui/icons-material";
 
-
-function Layout({children}) {
+function Layout({children,props}) {
 
     const router = useRouter()
+    const pathname = usePathname()
+    
     
 
     const [page,setPage] = React.useState(1)
@@ -93,7 +96,7 @@ function Layout({children}) {
         let last = search.mainSearchLast
         let current = search.mainSearch
         let skip = last == current ? search.mainSearchSkip : 0
-        await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/articles?search=${search.mainSearch}&skip=${skip}`,{
+        await axios.get(`http://localhost:3000/dev/articles?search=${search.mainSearch}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -113,7 +116,7 @@ function Layout({children}) {
         let last = search.likedArticlesLast
         let current = search.likedArticles
         let skip = last == current ? search.likedArticlesSkip: 0
-        await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
+        await axios.get(`http://localhost:3000/dev/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -130,7 +133,7 @@ function Layout({children}) {
         let last = search.postedArticlesLast
         let current = search.postedArticles
         let skip = last == current ? search.postedArticlesSkip : 0
-        await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
+        await axios.get(`http://localhost:3000/dev/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -150,7 +153,7 @@ function Layout({children}) {
         let last = search.subscribedArticlesLast
         let current = search.subscribedArticles
         let skip = last == current ? search.subscribedArticles : 0
-       await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
+       await axios.get(`http://localhost:3000/dev/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
         headers:{
             Authorization : `Bearer ${cookieCutter.get("token")}`
            }
@@ -168,7 +171,7 @@ function Layout({children}) {
         let last = search.subscribedUsers
         let current = search.subscribedUsersLast
         let skip = last == current ? search.subscribedUsersSkip : 0
-         await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
+         await axios.get(`http://localhost:3000/dev/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -185,7 +188,7 @@ function Layout({children}) {
         let last = search.subscribersLast
         let current = search.subscribers
         let skip = last == current ? search.subscribersSkip : 0
-         await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
+         await axios.get(`http://localhost:3000/dev/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -212,7 +215,7 @@ function Layout({children}) {
     //GET DATA AT BEGINNING
     React.useEffect(()=>{
         console.log("checking login")
-        axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/login/check`,
+        axios.get(`http://localhost:3000/dev/login/check`,
         {           headers:{
             Authorization : `Bearer ${cookieCutter.get("token")}`
            }})
@@ -334,7 +337,7 @@ function Layout({children}) {
                 console.log(search)
                 
                 ;break;
-                case 3: placeholder ="Subscribers"
+                case 2: placeholder ="Subscribers"
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
                     subscribers: e.target.value,
@@ -344,7 +347,7 @@ function Layout({children}) {
                 handleSearch= (e)=>GetSubscribers()
                 
                 ;break;
-                case 4: placeholder ="Liked"
+                case 3: placeholder ="Liked"
                 changeFunction =(e)=> setSearch(current=>({
                     ...current,
                     likedArticles: e.target.value,
@@ -359,12 +362,15 @@ function Layout({children}) {
         }
         return {placeholder, changeFunction, value, handleSearch}
     }
-    let searchOptions = decideWhichSearch()
+    let searchOptions = React.useMemo(decideWhichSearch,[page, myPage, subscribedPage])
+    
+   
     
 
 
     return ( 
-        <UserContext.Provider value={{
+        <UserContext.Provider 
+        value={{
             page,setPage,subscribedPage,setSubscribedPage,myPage
             ,setMyPage,newArticle,setNewArticle,
             search,setSearch,data,
@@ -385,12 +391,23 @@ function Layout({children}) {
 
             setSearchMainActive,
             searchMainActive
-            }}>
-            <div className=" w-screen">
+            }}
+        >
+            <div className="   w-screen  min-h-screen ">
 
                 
                 
                 {children}
+                {!pathname.includes("create-article") &&
+                
+              
+                <div 
+                onClick={()=>router.push("/user/create-article")}
+                className="p-1 absolute bottom-0 right-0 hover:scale-110 dark:opacity-95 duration-500 cursor-pointer group opacity-80  m-4 lg:mr-12 rounded-full bg-neutral-300">
+                    <Add className=" opacity-75 delay-200 text-5xl group-hover:text-green-700 md:text-6xl"/>
+
+                </div>
+                }
 
 
 

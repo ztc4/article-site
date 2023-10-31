@@ -51,7 +51,7 @@ function Login() {
         formData.append("password",login.password)
     
         axios.put(
-            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/login`,{
+            `http://localhost:3000/dev/login`,{
              username:login.username,
                password:login.password
             }

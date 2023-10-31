@@ -1,9 +1,9 @@
-import Article from "../../../../Components/Article/article";
-import Button from "../../../../Components/Button/button";
-import Container from "../../../../Components/Container/container";
+import Article from "./Article/article";
+import Button from "./Button/button";
+import Container from "./Container/container";
 
 
-import { UserContext } from "../../../context/userContext";
+import { UserContext } from "../context/userContext";
 import React from "react";
 
 function LikedArticles() {
@@ -24,11 +24,11 @@ function LikedArticles() {
                 {articles.length == 0 && <p className="mt-12">You haven&apos;t like any articles</p>} 
                     
                 </Container>
-                {articles.length % 10 == 0   ?
+                {articles.length !== 0 &&  articles.length % 10 == 0    ?
                 <div className="p-8">
                     <Button data={buttondata} handleClick={LikedArticles}/>
                 </div>:
-                <p className="text-center mt-4">There are no more articles</p>
+                <p className="text-center mt-4">{ articles.length !== 0 && "There are no more articles"}</p>
                 
                 }
         </div> 

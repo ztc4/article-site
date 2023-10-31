@@ -29,7 +29,7 @@ function Button({data, handleClick}) {
     return ( 
         <button 
         name={data.name} 
-        className={`submit-button hover:drop-shadow font-semibold`}
+        className={`submit-button hover:drop-shadow font-semibold bg-red-700`}
        onClick={handleClick} 
        disabled={data.disabled}
         >
