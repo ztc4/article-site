@@ -8,7 +8,7 @@ import LikeButton from "../components/likeButton";
 import DeleteButton from "../components/deleteButton"
 async function getArticle(id){
     
-    let data = axios.get(`http://localhost:3000/dev/article/${id}`)
+    let data = axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/${id}`)
     .then(res => {console.log(res); return res.data})
 
     return data
@@ -41,7 +41,7 @@ async function Article(query) {
        
             <Image 
             className="object-center object-contain color4  h-96 w-full sm:object-cover"
-            src="/image-1" 
+            src={`https://article-website-images.s3.amazonaws.com/${data._id}.webp`} 
             width={1000} height={1000} alt="News article poster Image"/>
 
             {/*Like and Back Button */}

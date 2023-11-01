@@ -8,7 +8,7 @@ function LikeButton({id}) {
     let [isLiked,setLiked] = React.useState(false)
     let [userArticle, setUserArticle] = React.useState(true)
     async function LikeArticle(){
-        axios.put("http://localhost:3000/dev/article/like",{
+        axios.put("https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/like",{
             articleId: id
         },{
            headers:{
@@ -22,7 +22,7 @@ function LikeButton({id}) {
 
     React.useEffect(()=>{
 
-        axios.get(`http://localhost:3000/dev/article/${id}/isliked`,{
+        axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/${id}/isliked`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }

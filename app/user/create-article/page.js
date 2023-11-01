@@ -83,7 +83,7 @@ function AddArticles() {
             
             setIsLoading(true)
             //"https://article-api-cookies-instead-of.onrender.com/article/add"
-           let result = await axios.post("http://localhost:3000/dev/article/add", 
+           let result = await axios.post("https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/add", 
            {
             title:newArticle.title,
             articleText:newArticle.article,
@@ -144,8 +144,17 @@ function AddArticles() {
 
 
     return ( 
-        <div className="px-4 py-4 sm:p-8 mx-auto bg-red gap-4 h-full -z-10 drop-shadow-lg w-full sm:w-8/12 bg-neutral-300 flex flex-col">
-            <button className="self-start hover:bg-blue-500 p-1 px-2 duration-500 hover:p-3 rounded-2xl flex justify-center gap-2 items-center" onClick={goBackToUser}>
+        <div 
+        className="px-4 py-4 sm:p-8 mx-auto bg-red gap-4 h-full
+         -z-10 drop-shadow-lg w-full sm:w-8/12 bg-neutral-300 
+         flex flex-col">
+            <button 
+
+            className="self-start hover:bg-blue-500 p-1 px-2
+             duration-500 hover:p-3 rounded-2xl flex justify-center 
+             gap-2 items-center" 
+
+             onClick={goBackToUser}>
                 <ArrowBack />
                 <p>Back</p>
                 </button>
@@ -156,7 +165,9 @@ function AddArticles() {
 
             {/* Select the Category of Article */}
             <h2 className="-mb-4">Select Category:</h2>
-            <select  id="category" className="p-2 " value={newArticle.category} onChange={handleChange}>
+            <select  id="category" className="p-2 " 
+            value={newArticle.category} 
+            onChange={handleChange}>
                 <option value="Other" >Other</option>
                 <option value="Programming">Programming</option>
                 <option value="Gaming">Gaming</option>
@@ -183,20 +194,38 @@ function AddArticles() {
                 ...current,
                 article: current.article.concat(current.paragraph + "*8^"),
                 paragraph:""
-            }))} className="bg-gray-200 rounded-full md:mx-auto md:w-1/2 hover:bg-blue-500 duration-500  p-4"> Add paragraph</button>
+            }))} 
+            className="bg-gray-200 rounded-full md:mx-auto md:w-1/2
+             hover:bg-blue-500 duration-500  p-4">
+                 Add paragraph
+            </button>
 
 
             {/* Added Paragraphs */}
-            {newArticle.article.map((current,id) => <CAPargaph key={current} paragraph={current} index={id} handleClick={deleteParagraph}/>)}
+            {newArticle.article
+            .map((current,id) => 
+            <CAPargaph 
+            key={current} 
+            paragraph={current} 
+            index={id} 
+            handleClick={deleteParagraph}/>)}
 
             
             {/* Submit Button  */}
             
-            <button onClick={submitForm} className="bg-gray-200 hover:scale-105 hover:bg-blue-500 duration-500 rounded-full p-4" disabled={isLoading}>
+            <button 
+            onClick={submitForm} 
+            className="bg-gray-200 hover:scale-105 
+            hover:bg-blue-500 duration-500 rounded-full p-4" 
+            disabled={isLoading}>
                 
                 {!isLoading ?
                  "Add Article" : 
-                 <Image width={20} height={20} class=" ml-3 inline-block animate-spin  h-8 w-8" alt="loading" src="/loading-20.svg"/>}
+                 <Image 
+                 width={20} height={20} 
+                 class=" ml-3 inline-block animate-spin  h-8 w-8" 
+                 alt="loading" 
+                 src="/loading-20.svg"/>}
                  
             </button>
             

@@ -17,23 +17,23 @@ function User({data}) {
     function handleClick(){
 
     }
+    console.log(10,data._id)
     return ( 
         <div className="flex flex-col p-1 card w-[300px] h-20 " onClick={redirect}>
-            <div className="h-full ml-2 flex flex-row items-center">
-                <div className=" w-2/12 justify-center">
-                { error == false?
+            <div className="h-full flex flex-row items-center">
+                <div className=" w-2/12 justify-center ml-2 h-full">
+                { !error  &&
                     <Image 
                     
-                    width={50} height={50} 
-                    className="rounded-full rotate-90 hover:cursor-pointer"
-                    src={`https://article-api-cookies-instead-of.onrender.com/users/${data._id}/avatar`} 
+                    width={500} height={500} 
+                    className=" object-fill h-12 w-12 rounded-full rotate-90 hover:cursor-pointer"
+                    src={`https://article-website-images.s3.amazonaws.com/${data._id}.webp`} 
                     alt="article image"
-                    onError={ setError(true)}
+                    loading="lazy"
+                    onError={()=> setError(true)}
                     />
-                    :
-                    <div 
-                    onClick={()=>router.push(`/profile/${data.username}`)}
-                    className=" border hover:cursor-pointer bg-yellow-600 rounded-full h-12 w-12"/>}
+            
+                    }
                     
                 </div>
                 <div className="w-full ml-2">

@@ -54,7 +54,7 @@ function AddArticles() {
             
             setIsLoading(true)
             //"https://article-api-cookies-instead-of.onrender.com/article/add"
-           let result = await axios.post("http://localhost:3000/dev/article/add", 
+           let result = await axios.post("https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/add", 
            {
             title:newArticle.title,
             articleText:newArticle.article,

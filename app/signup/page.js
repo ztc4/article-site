@@ -76,7 +76,7 @@ function Signup() {
         console.log(!valid ? "It isnt' valid": "It is valid")
        if(valid !== true) return
         setIsLoading(true)
-        axios.post(`http://localhost:3000/dev/signup`,{
+        axios.post(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/signup`,{
             firstname:signup.fname.trim(),
             lastname:signup.lname.trim(),
             age:signup.age,

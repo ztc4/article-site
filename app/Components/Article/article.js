@@ -28,7 +28,7 @@ function Article({data}) {
         <Image 
         width={2000} height={2000}  
         className="w-full h-[200px] object-cover"
-        src="/image-1"
+        src={`https://article-website-images.s3.amazonaws.com/${data._id}.webp`}
         alt="Article Image"/>
         <div className="p-4">
             <h4 className="title-text">{data.title}</h4>
@@ -36,15 +36,6 @@ function Article({data}) {
             <p className="text-xs font-light">Category:<span className="font-extralight">{data.category}</span></p>
 
         </div>
-
-                
-
-
-
-
-
-
-
         </motion.div>
      );
 }

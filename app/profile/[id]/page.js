@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 
 async function getProfile(id){
     
-    let data = fetch(`http://localhost:3000/dev/user/${id}`,{
+    let data = fetch(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/${id}`,{
         method: "GET",
         cache: 'no-cache'
     
@@ -17,10 +17,23 @@ async function getProfile(id){
     .then(res => { return res})
     return data
 }
+async function getArticles(){
+    console.log("getting the data")
+    let data = await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/profile/${username}`)
+    .then(res=>{
+        console.log(7,res.data);
+        return res.data}
+     
+
+    )
+    .catch(err=> false)
+    return data
+}
 
 async function Profile(query) {
     console.log(query.params)
     let data = await getProfile(query.params.id)
+    let articles = await getArticles
     console.log(3,data)
 
  
@@ -35,7 +48,7 @@ async function Profile(query) {
                     <div className=" bg-gray-200 rounded-2xl p-4">
                         <Image 
                             className=" color4 drop-shadow rotate-90 h-16 w-16 rounded-full "
-                            src="/image-1"
+                            src={`https://article-website-images.s3.amazonaws.com/${data._id}.webp`}
                             width={50} height={50} alt="News article poster Image"
                             loading="lazy"
                             />

@@ -96,7 +96,7 @@ function Layout({children,props}) {
         let last = search.mainSearchLast
         let current = search.mainSearch
         let skip = last == current ? search.mainSearchSkip : 0
-        await axios.get(`http://localhost:3000/dev/articles?search=${search.mainSearch}&skip=${skip}`,{
+        await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/articles?search=${search.mainSearch}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -116,7 +116,7 @@ function Layout({children,props}) {
         let last = search.likedArticlesLast
         let current = search.likedArticles
         let skip = last == current ? search.likedArticlesSkip: 0
-        await axios.get(`http://localhost:3000/dev/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
+        await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/articles/liked?search=${search.likedArticles}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -133,7 +133,7 @@ function Layout({children,props}) {
         let last = search.postedArticlesLast
         let current = search.postedArticles
         let skip = last == current ? search.postedArticlesSkip : 0
-        await axios.get(`http://localhost:3000/dev/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
+        await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/articles/posted?search=${search.postedArticles}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -153,7 +153,7 @@ function Layout({children,props}) {
         let last = search.subscribedArticlesLast
         let current = search.subscribedArticles
         let skip = last == current ? search.subscribedArticles : 0
-       await axios.get(`http://localhost:3000/dev/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
+       await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/articles/subscribed?search=${search.subscribedArticles}&skip=${skip}`,{
         headers:{
             Authorization : `Bearer ${cookieCutter.get("token")}`
            }
@@ -171,7 +171,7 @@ function Layout({children,props}) {
         let last = search.subscribedUsers
         let current = search.subscribedUsersLast
         let skip = last == current ? search.subscribedUsersSkip : 0
-         await axios.get(`http://localhost:3000/dev/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
+         await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/users/subscribed?search=${search.subscribedUsers}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -188,7 +188,7 @@ function Layout({children,props}) {
         let last = search.subscribersLast
         let current = search.subscribers
         let skip = last == current ? search.subscribersSkip : 0
-         await axios.get(`http://localhost:3000/dev/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
+         await axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/users/subscribers?search=${search.subscribers}&skip=${skip}`,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -215,7 +215,7 @@ function Layout({children,props}) {
     //GET DATA AT BEGINNING
     React.useEffect(()=>{
         console.log("checking login")
-        axios.get(`http://localhost:3000/dev/login/check`,
+        axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/login/check`,
         {           headers:{
             Authorization : `Bearer ${cookieCutter.get("token")}`
            }})

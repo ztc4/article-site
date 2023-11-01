@@ -64,7 +64,7 @@ function Settings() {
         }
     
         let result = await axios.put(
-            `http://localhost:3000/dev/user/avatar`,
+            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/user/avatar`,
             {
                 category: user.category,
                 about: user.about,
@@ -108,7 +108,7 @@ function Settings() {
 
     function Logout(){
         axios.put(
-            `http://localhost:3000/dev/logout`,{
+            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/logout`,{
 
             },
             {
@@ -123,7 +123,7 @@ function Settings() {
     }
     function LogoutAll() {
         axios.put(
-            `http://localhost:3000/dev/logoutAll`,{
+            `https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/logoutAll`,{
 
             },
             {
@@ -136,6 +136,7 @@ function Settings() {
         .catch( res => alert("Having trouble saving"))
         .then(res => alert("Logout all other users"))
     }
+    console.log(4,user)
     
     
 
@@ -148,7 +149,7 @@ function Settings() {
                     <div className="h-24 w-24  rounded-full">
                         <Image 
                                 className=" color4 w-full border rotate-90 h-24 rounded-full  drop-shadow object-cover  "
-                                src="/image-1"
+                                src={`https://article-website-images.s3.amazonaws.com/${user.id}.webp`}
                                 width={500} height={500} alt="News article poster Image"
                                 loading="lazy"
                                 />

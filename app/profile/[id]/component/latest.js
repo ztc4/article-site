@@ -1,24 +1,31 @@
 "use client"
 import React from "react";
-
 import axios from "axios";
 import Article from "../../../Components/Article/article";
 
 function ProfileArticles({username}) {
 
     const [page,setPage] = React.useState("Latest")
-    let [data,setData] = React.useState()
+    let [data,setData] = React.useState(null)
 
     React.useEffect(()=>{
-        console.log("getting data")
-      axios.get(`http://localhost:3000/dev/article/profile/${username}`)
-        .then(res=>
-           setData(res.data)
-        )
-        .catch("Coulnd' get data")
+        console.log("doing it")
+
+        axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/article/profile/${username}`,{
+            cache:"no-store"
+        })
+        .then(res => {
+            console.log(99,res)
+            setData(res.data)})
+        .catch(err=> alert(3,err))
 
     },[])
-    console.log(data)
+
+    // function article
+
+
+
+ 
     
     let likesArticles = data?.LikesArticle?.map(current => <Article key={current._id} data={current}/>) 
     console.log(1, likesArticles)

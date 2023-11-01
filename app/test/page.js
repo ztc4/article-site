@@ -14,7 +14,7 @@ function Test() {
 
 
     // function getURl(){
-    //     axios.get("http://localhost:3000/dev/awsurl").then(
+    //     axios.get("https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/awsurl").then(
     //         res=> setUrl(res.data)
     //     )
     //     console.log(url)
@@ -29,7 +29,7 @@ function Test() {
 
         let type = `${image.type}`
         // Get the presigned URL
-        const url =  await axios.post(`http://localhost:3000/dev/awsurl`,{
+        const url =  await axios.post(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/awsurl`,{
             'type':type
         })
         .then(res=> res.data); 

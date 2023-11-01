@@ -10,7 +10,7 @@ function DeleteArticle({id}) {
 
     let [userArticle, setUserArticle] = React.useState(false)
     function deleteArticle(){
-        axios.delete(`http://localhost:3000/dev/currentUserArticle/${id}` ,{
+        axios.delete(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/currentUserArticle/${id}` ,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
@@ -25,7 +25,7 @@ function DeleteArticle({id}) {
     }
 
     React.useEffect(()=>{
-        axios.get(`http://localhost:3000/dev/currentUserArticle/${id}` ,{
+        axios.get(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/currentUserArticle/${id}` ,{
             headers:{
                 Authorization : `Bearer ${cookieCutter.get("token")}`
                }
