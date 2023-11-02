@@ -7,9 +7,9 @@ function HomeFeatures({title, description}) {
         <div 
         className="bg-neutral-100 
          h-32 
-        p-5 cursor-pointer 
+        p-5 cursor-default
         rounded-xl hover:bg-[rgba(37,99,235,.7)] 
-        hover:translate-x-6
+        md:hover:translate-x-6
         font-semibold
         duration-500
         flex
@@ -17,7 +17,8 @@ function HomeFeatures({title, description}) {
         group
         drop-shadow-md
         overflow-y-clip
-        hover:h-44
+        hover:h-60
+        md:hover:h-44
         hover:duration-1000
         hover:z-10"
         >

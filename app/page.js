@@ -20,7 +20,7 @@ export default function Home() {
   },[])
 
   async function getArticles(){
-    let data =  await fetch(`http://localhost:3000/dev/articles?search=&0`)
+    let data =  await fetch(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/articles?search=&0`)
     .then(res => res.json())
     setArticle(data)
     console.log(article)
@@ -79,7 +79,7 @@ export default function Home() {
           priority
           />
        </motion.div>
-         <p className='text-center sm:w-4/5 tracking-wide sm:text-lg  font-haskoy'>Are you ready to bring your thoughts to life? Welcome to ArticleCraft,
+         <p className='text-center sm:w-4/5 tracking-wide sm:text-lg p-1  font-haskoy'>Are you ready to bring your thoughts to life? Welcome to ArticleCraft,
            the ultimate platform for unleashing your creativity through beautifully
           crafted articles. Whether you&apos;re a seasoned writer or just starting your
           journey, our user-friendly interface empowers you to create captivating
@@ -105,7 +105,7 @@ export default function Home() {
       {/*POPULAR ARTICLES */}
         <div className='min-h-screen relative md:p-8 left-0 background-popular bg-no-repeat bg-cover bg-opacity-20'>
         <h2 className='  text-2xl xl:text-3xl z-10 font-sloth text-left'>Popular Articles</h2>
-          <div className='my-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
+          <div className='my-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 '>
             {article.map((data,id) => <ArticleServer key={data._id} data={data} />)}
 
 
@@ -159,7 +159,7 @@ export default function Home() {
             </button>
             </Link>
             <Link href="/login" passHref>
-              <p className='mt-3 text-lg hover:text-purple-700 hover:scale-105 font-medium'>
+              <p className='mt-3 text-lg hover:text-purple-700 duration-500 hover:scale-105 font-medium'>
                 Already Have an Account? Login
               </p>
             </Link>
