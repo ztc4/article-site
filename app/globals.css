@@ -57,6 +57,9 @@
 .background-popular{
   background-image: url("../public/Vector.svg");
 }
+.image-border-creator{
+  border-radius: 470.588px 117.647px 117.647px  470.588px ;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-end-rgb))

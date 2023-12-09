@@ -13,8 +13,8 @@ function LandingPageArticle({data}) {
     //${data._id || ""}
     return ( 
         
-            <Link pass href={`/article/`} >
-                <h1>{imageError ? "No" : "YES"}</h1>
+            <Link pass href={`/article/${data._id}`}  >
+                
                 
                 <motion.div
                 whileHover={{scale:1.02}}
@@ -26,7 +26,7 @@ function LandingPageArticle({data}) {
                             width={2000} 
                             height={2000}  
                             className="w-1/6 object-cover"
-                            src={`https://article-website-images.s3.amazonaws.com/r.webp`}
+                            src={`https://article-website-images.s3.amazonaws.com/${data._id}.webp`}
                             alt="Article Image"
                             loading="lazy"
                             onError={() => setImageError(true)}

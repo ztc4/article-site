@@ -46,7 +46,8 @@ module.exports = {
       },
       backgroundImage:{
         'square-gradient': "url('/article-background-2.svg')",
-        'squares': "url('/article-background-1.svg')" // Replace with your image path
+        'squares': "url('/article-background-1.svg')", // Replace with your image path
+         "creator" : "url('//picture-1.webp')"
       },
       backgroundSize: {
         'size-200': '200%',  // Example of custom size
