@@ -16,9 +16,22 @@
   }
 } */
 @font-face {
-  font-family: "sloth";
+  font-family: "sloth-bold";
   src: url("../public/SLOTH-BOLD.ttf");
 }
+@font-face {
+  font-family: "sloth-semibold";
+  src: url("../public/Sloth-SemiBold.ttf");
+}
+@font-face {
+  font-family: "sloth-regular";
+  src: url("../public/Sloth-Regular.ttf");
+}
+@font-face {
+  font-family: "sloth-extrabold";
+  src: url("../public/Sloth-Extrabold.ttf");
+}
+
 @font-face {
   font-family: "martel";
   src: url("../public/MartelSans-Regular.ttf");
@@ -26,6 +39,18 @@
 @font-face {
   font-family: "haskoy";
   src: url("../public/Haskoy-Regular.ttf");
+}
+@font-face {
+  font-family: "haskoy-semibold";
+  src: url("../public/Haskoy-SemiBold.ttf");
+}
+@font-face {
+  font-family: "haskoy-extrabold";
+  src: url("../public/Haskoy-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "haskoy-medium";
+  src: url("../public/Haskoy-Medium.ttf");
 }
 
 

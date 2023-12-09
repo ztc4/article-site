@@ -14,7 +14,7 @@ export default function Home() {
   let [article,setArticle] = React.useState([])
 
   React.useEffect(()=>{
-    getArticles()
+    // getArticles()
     
 
   },[])
