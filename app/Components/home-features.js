@@ -5,10 +5,10 @@ function HomeFeatures({title, description}) {
 
 
         <div 
-        className="bg-neutral-100 
+        className="bg-purple-accent
          h-32 
         p-5 cursor-default
-        rounded-xl hover:bg-[rgba(37,99,235,.7)] 
+        rounded-xl hover:bg-purple-blue
         md:hover:translate-x-6
         font-semibold
         duration-500
@@ -17,14 +17,15 @@ function HomeFeatures({title, description}) {
         group
         drop-shadow-md
         overflow-y-clip
-        hover:h-60
-        md:hover:h-44
+        hover:h-52
+        md:hover:h-40
+       
         hover:duration-1000
         hover:z-10"
         >
             <div>
-                <h5 className="opacity-50 hover:opacity-90 duration-700">{title}</h5>
-                <p className="opacity-50 hover:opacity-90 duration-700">{description}</p>
+                <h5 className="opacity-80 text-pl hover:opacity-90 duration-700">{title}</h5>
+                <p className="opacity-80 hover:opacity-90 duration-700">{description}</p>
 
             </div>
             

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import LandingPageArticle from "../Components/Landing-Page-Article"
+import HomeFeatures from "../Components/home-features"
 
 function LandingPage() {
 
@@ -86,10 +87,43 @@ function LandingPage() {
 
             <section
             id="FEATURES"
-            className='w-screen h-screen px-4 py-4 md:py-6 md:px-40 text-white bg-dark-purple'>
-                    <h1 className='font-sloth-semibold text-hs leading-none h-1/6 mt-4  md:text-hl'>
+            className='w-screen min-h-screen px-4 py-4 md:py-6 md:px-40 text-white bg-dark-purple'>
+                    <h1 className='font-sloth-semibold  md:text-center leading-none  mt-4 md:mt-12  text-hl'>
                             Features That Empower You
                     </h1>
+                    <div className=' grid md:mt-8 grid-cols-1 hover:text-white text-black gap-2'>
+                        <HomeFeatures 
+                        title="Craft Your Stories" 
+                        description=
+                        {`
+                        Dive into the art of storytelling with 
+                        our intuitive article creation tools.
+                        Seamlessly combine captivating poster 
+                        images with engaging paragraphs to 
+                        create articles that leave a lasting impact.
+                        `}
+                        />
+                        <HomeFeatures 
+                        title="Secure and Seamless" 
+                        description=
+                        {`
+                        Rest assured that your creative works are protected
+                        in a secure environment.
+                        Our seamless interface ensures that your focus remains
+                        on crafting exceptional articles.`}
+                        />
+                        <HomeFeatures 
+                        title="Track Your Impact" 
+                        description=
+                        {`
+                        Gain insights into the performance of your articles.
+                        Measure likes, engagement, and subscriptions to refine your 
+                        content strategy and understand what resonates with your audience.
+                        `}
+                        />
+
+                    </div>
+                   
 
             </section>
 

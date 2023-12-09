@@ -35,7 +35,7 @@ module.exports = {
         "white":"#FFFFFF",
         "dark-purple":"#332B5D",
         "black":"#333333",
-        "purple/blue":"#393D5E",
+        "purple-blue":"#393D5E",
         "pink":"#EFD4FF"
       },
       fontSize: {
