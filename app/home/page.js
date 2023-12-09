@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
+import LandingPageArticle from "../Components/Landing-Page-Article"
 
 function LandingPage() {
 
     
+    let data = {title:"hello the first novel",author:"ztc4",category:"Programming",id:"erere"}
         // Write your code here
         
 
@@ -52,15 +54,28 @@ function LandingPage() {
 
             <section 
             id="POPULAR-ARTICLES"
-            className='w-screen h-screen overflow-hiddenpx-4 p-4 md:py-6 md:px-40' >
-                <header>
-                    <h1 className='font-sloth-semibold text-hl leading-none   md:text-hl'>
+            className='w-screen flex flex-col gap-8   h-screen px-4 py-4 md:py-6 md:px-40' >
+            
+                    <h1 className='font-sloth-semibold text-hl leading-none h-1/6   md:text-hl'>
                             Popular  <br/> Articles
                     </h1>
-                </header>
-                <div className='w-full max-h-full min-h-fit h-full rounded-2xl my-8 flex flex-col p-8 justify-center bg-dark-purple'>
+                    <Image src="/article-background-2.svg" width={300} height={300} alt="bg-images" className='-z-10 h-96 w-96 overflow-x-hidden md:h-[600px] md:w-[600px]  absolute top-screen left-0'/>
+               
+                <div className='w-full h-4/5 rounded-2xl mt-8  flex flex-col p-4 md:p-8 border-4 justify-center bg-dark-purple'>
                     <Image src="/Fire.svg" width={50} height={50} alt="arrow" className=' shadow-lg text-blue inline-block py-2 w-full h-1/6 mx-auto  '/>
-                    <div className='grid grid-cols-1 gap-2 md:grid-cols-2 h-5/6'>
+                    <div className='grid md: grid-cols-1 overflow-y-auto overflow-x-hidden gap-2 md:grid-cols-2 h-5/6'>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+                        <LandingPageArticle data={data}/>
+
+                        
 
                     </div>
 
@@ -71,7 +86,10 @@ function LandingPage() {
 
             <section
             id="FEATURES"
-            className='w-screen h-screen'>
+            className='w-screen h-screen px-4 py-4 md:py-6 md:px-40 text-white bg-dark-purple'>
+                    <h1 className='font-sloth-semibold text-hs leading-none h-1/6 mt-4  md:text-hl'>
+                            Features That Empower You
+                    </h1>
 
             </section>
 
