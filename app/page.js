@@ -1,241 +1,257 @@
 "use client"
-import Image from 'next/image'
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
-import Link from 'next/link'
-import {motion} from "framer-motion"
-import HomeFeatures from './Components/home-features'
-import ArticleServer from './Components/Article/article-server'
+import LandingPageArticle from "./Components/Landing-Page-Article"
+import HomeFeatures from "./Components/home-features"
+import {AnimatePresence, motion} from "framer-motion"
+import ImageCarousel from "./Components/Image-Carousel"
 
+function LandingPage() {
 
-
-export default function Home() {
-
-
-  let [article,setArticle] = React.useState([])
-
-  React.useEffect(()=>{
-    // getArticles()
     
-
-  },[])
-
-  async function getArticles(){
-    let data =  await fetch(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/articles?search=&0`)
-    .then(res => res.json())
-    setArticle(data)
-    console.log(article)
-    return data
-  
-  }
+    let data = {title:"hello the first novel",author:"ztc4",category:"Programming",_id:"erere"}
+        // Write your code here
+        const images = [
+            {image:"/connect-1.svg",project:"2"},
+            {image:"/connect-1.svg",project:"2"},
+            {image:"/connect-1.svg",project:"2"}
+        ]
 
 
+        let [article,setArticle] = React.useState([])
 
-
-
-  return (
-    <main className=" grid grid-cols-1 p-4 gap-12 md:px-56 w-screen overflow-x-hidden">
-
-      {/*HEADER */}
-
-
-       <div className='flex flex-row p-3 sm:px-8 justify-between items-center '>
-          <h1 className='font-extrabold text-lg sm:text-2xl w-14 '>ARTICLECRAFT</h1>
-          <div className='flex gap-2  flex-row '>
-            <Link href="/login" passHref>
-              <button className='font-bold hover:bg-blue outline min-[300px]:outline-none  p-1 rounded-md sm:rounded-none  sm:p-2 sm:text-xl'>Login</button>
-            </Link>
-           <Link href="/signup" passHref>
-              <button className='font-bold hidden min-[500px]:block p-1 hover:bg-[#2564eb94] bg-opacity-50 sm:p-2 sm:text-xl'>Signup</button>
-            </Link>
-          </div>
-       </div>
-
-       {/*Landing Introduction*/}
-       <motion.div
-            
-            initial={{x:30,opacity:0.5}}
-            animate={{x:0,opacity: 1}}
-            duration={{duration:0.7,delay: 0}} 
-            
-       className=' flex flex-col justify-center items-center sm:gap-3 '>
-         <h2 className='  text-2xl xl:text-3xl text-center font-sloth'>Craft,Share,Connect</h2>
-         <p className='text-center sm:w-4/5 tracking-wide sm:text-lg  font-haskoy'>
-         Create and Share Your Own Articles throught the web
-          </p>
-          <motion.div
-            
-            initial={{opacity:0}}
-            whileInView={{opacity: 1}}
-            duration={{duration:3,delay: 0}} 
-            
-       id="landing-iamge" className='w-full h-[400px] '>
-          <Image 
-          height={2400}
-          width={2400}
-          className='object-center  sm:object-contain md:p-12 sm:w-full h-full '
-          alt="Landing Page image"
-          src={"/blogs.svg"}
-          loading='eager'
-          priority
-          />
-       </motion.div>
-         <p className='text-center sm:w-4/5 tracking-wide sm:text-lg p-1  font-haskoy'>Are you ready to bring your thoughts to life? Welcome to ArticleCraft,
-           the ultimate platform for unleashing your creativity through beautifully
-          crafted articles. Whether you&apos;re a seasoned writer or just starting your
-          journey, our user-friendly interface empowers you to create captivating
-          articles that inspire, inform, and entertain.
-          </p>
-          <Link href="/signup"  className='w-full flex justify-center 'passHref>
-            <button 
-            className='font-bold 
-         
-            text-neutral-100 rounded-3xl 
-            w-52
-            min-w-52 
-            mt-4 hover:shadow-sm duration-500 hover:opacity-100 
-            border-blue border-opacity-90 border-1 hover:scale-105 
-            bg-blue opacity-70 h-12  px-4 sm:text-xl'>
-              GET STARTED
-            </button>
-            </Link>
-              
-       </motion.div>
-
-
-      {/*POPULAR ARTICLES */}
-        <div className='min-h-screen relative md:p-8 left-0 background-popular bg-no-repeat bg-cover bg-opacity-20'>
-        <h2 className='  text-2xl xl:text-3xl z-10 font-sloth text-left'>Popular Articles</h2>
-          <div className='my-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 '>
-            {article.map((data,id) => <ArticleServer key={data._id} data={data} />)}
-
-
-
-
-           
-
-
-            
-          </div>
-
-        </div>
-
-
-
-       <motion.div 
-            
-            initial={{opacity:0.7}}
-            whileInView={{x:10,opacity: 1}}
-            duration={{duration:1,delay: 0}} 
-            
-       className=' flex flex-col gap-1 justify-center items-center sm:gap-3 '>
-        <div className='flex w-full flex-row items-center justify-center gap-4 md:gap-14 lg:gap-20 p-4'>
-          <Image alt="image symbolizing joining" 
-          width={100} height={100}
-          className="h-32 w-32 md:h-56 md:w-56 lg:w-64 lg:h-64 " src="/Group.svg"/>
-          <div
-          className='font-semibold text-xl md:gap-2 sm:text-3xl flex flex-col  leading-loose text-center mb-2'>
-            <h2 >JOIN </h2>
-            <h2>ARTICLECRAFT </h2>
-            <h2 >TODAY!</h2>
-           
-          </div>
-
-        </div>
-         
-         <p className=' md:w-4/5 tracking-wide text-base font-base'>
-         Embark on a journey of self-expression and connection.
-          Whether you&apos;re an aspiring author, an experienced wordsmith,
-           or simply someone who loves to read and engage with meaningful content, ArticleCraft welcomes you.
-           Sign up now to start creating, sharing, and connecting like never before.
-          </p>
-          <p className=' md:w-4/5 tracking-wide text-base  text-[#2563EB] font-base'>
-          Ready to ignite your creativity? Start Crafting Your Stories With ArticleCraft Today.
-          </p>
-          <div className='mt-0 flex flex-col'>
-          <Link href="/signup" className='flex justify-center' passHref>
-            <button 
-            className='font-bold text-neutral-100 rounded-3xl mt-4 hover:shadow-sm duration-500 hover:opacity-100 border-blue border-opacity-90 border-1 hover:scale-105 bg-blue opacity-50 h-12 min-w-40 px-4 sm:text-xl'>
-              GET STARTED
-            </button>
-            </Link>
-            <Link href="/login" passHref>
-              <p className='mt-3 text-lg hover:text-purple-700 duration-500 hover:scale-105 font-medium'>
-                Already Have an Account? Login
-              </p>
-            </Link>
-
-          </div>
-              
-       </motion.div>
-       <div className='h-1 w-full bg-[#000000]'></div>
-       <motion.div
-       
-     
-       initial={{x:-300,opacity:0.7}}
-       whileInView={{x:10,opacity: 1}}
-       duration={{duration:1,delay: 0}} 
-       
-       className=' mt-8 flex flex-col gap-1 justify-center items-center sm:gap-3 '>
-         <h2 className='font-semibold text-xl xl:text-3xl '>Features That Empower You</h2>
-         <div className='p-4 w-full grid grid-cols-1  md:grid-cols-2 gap-4'>
-          <HomeFeatures 
-          title="Craft Your Stories" 
-          description=
-          {`
-          Dive into the art of storytelling with 
-          our intuitive article creation tools.
-          Seamlessly combine captivating poster 
-          images with engaging paragraphs to 
-          create articles that leave a lasting impact.
-          `}
-          />
-            <HomeFeatures 
-          title="Secure and Seamless" 
-          description=
-          {`
-          Rest assured that your creative works are protected
-          in a secure environment.
-          Our seamless interface ensures that your focus remains
-          on crafting exceptional articles.`}
-          />
-          <HomeFeatures 
-          title="Track Your Impact" 
-          description=
-          {`
-          Gain insights into the performance of your articles.
-          Measure likes, engagement, and subscriptions to refine your 
-          content strategy and understand what resonates with your audience.
-          `}
-          />
-
-           
-
-         </div>
-
-
-       </motion.div>
-       <div className='h-1 w-full bg-[#000000] opacity-50'></div>
-       <h2 className='font-semibold text-2xl xl:text-3xl text-center'>START READING NOW!</h2>
-       <div className='w-3/5 mx-auto grid gap-4  grid-cols-2'>
-          <Link href="/login" passHref>
-                  <button 
-                    className='font-semibold text-neutral-800 hover:scale-105 duration-500 hover:bg-neutral-200 rounded-sm hover:shadow-sm outline h-12 w-full sm:p-2 sm:text-xl'>
-                      LOGIN
-                    </button>
-          </Link>
-          <Link href="/signup" passHref>
-            <button 
-            className='font-bold text-neutral-100 rounded-sm hover:scale-105 duration-500 hover:shadow-sm bg-blue h-12 w-full sm:p-2 sm:text-xl'>
-              SIGNUP
-            </button>
-          </Link>
-
-
+        React.useEffect(()=>{
+          getArticles()
+          
+      
+        },[])
+      
+        async function getArticles(){
+          let data =  await fetch(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/articles?search=&0`)
+          .then(res => res.json())
+          setArticle(data)
+        //   console.log(2,data)
+        //   console.log(article)
+          return data
         
+        }
+        
+    return ( 
+        <body className='font-haskoy-semibold overflow-x-hidden  text-black'>
+         
+            <section 
+            id="FIRST-PAGE"
+            className='w-screen min-h-screen flex flex-col gap-8 overflow-x-hidden px-4 p-4 md:py-6 md:px-40  '>
+                <header>
+                    <h1 className='font-sloth-extrabold text-lg sm:text-2xl text-[#000] w-14 '>ARTICLECRAFT</h1>
+                </header>
 
-       </div>
-   
-   
-    </main>
-  )
+                {/* bg-image */}
+                <Image src="/article-background-1.svg" width={300} height={300} alt="bg-images" className='-z-10 h-96 w-96 overflow-x-hidden md:h-[600px] md:w-[600px]  absolute top-10 -right-0'/>
+
+                <div className='mt-8 flex flex-col gap-8  md:w-3/6  '>
+                    
+                        < motion.h1 className='font-sloth-semibold text-hl leading-none   md:text-hl'>
+                            CRAFT <br/> SHARE <br/> CONNECT
+                        </motion.h1>
+                        
+                        <Link href="/signup" className='mt-4 font-haskoy-extrabold text-pl inline hover:text-dark-purple' passHref>
+                            <p className='inline-block'>Get Started Now</p> 
+                            <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className=' text-blue inline-block w-6 '/> 
+                        </Link>
+                        <p className=' md:text-lg'>   
+                         {`   Are you prepared to give life to your thoughts? Introducing ArticleCraft – 
+                            the ultimate platform designed for unleashing your creativity through beautifully crafted articles.
+                            Regardless of whether you are an experienced writer or just embarking on your writing journey, our user-friendly interface is tailored to empower you. It enables the creation of captivating articles that not only inspire and inform but also entertain.
+                            Welcome to a world where your ideas take shape in the most engaging way.`}
+                        </p>
+                        <div className='h-12 w-fit font-haskoy-extrabold text-lg flex flex-row gap-4 '>
+                            <Link href="/signup" passHref>
+                                <button className='bg-pink hover:scale-105 py-2 duration-200 rounded-md  px-8'>SIGNUP</button>
+                            </Link>
+                            <Link href="/login" passHref>
+                                <button className='bg-blue py-2 hover:scale-105 duration-200 rounded-md text-pink  px-4'>LOGIN</button>
+                            </Link>
+                        </div>       
+                </div>
+
+            </section>
+
+            <section 
+            id="POPULAR-ARTICLES"
+            className='w-screen flex flex-col gap-8   h-screen px-4 py-4 md:py-6 md:px-40' >
+            
+                    <h1 className='font-sloth-semibold text-hl leading-none h-1/6   md:text-hl'>
+                            Popular  <br/> Articles
+                    </h1>
+                    <Image src="/article-background-2.svg" width={300} height={300} alt="bg-images" className='-z-10 h-96 w-96 overflow-x-hidden md:h-[600px] md:w-[600px]  absolute top-screen left-0'/>
+               
+                <div className='w-full h-4/5 rounded-2xl mt-8  flex flex-col p-4 md:p-8 border-4 justify-center bg-dark-purple'>
+                    <Image src="/Fire.svg" width={50} height={50} alt="arrow" className=' shadow-lg text-blue inline-block py-2 w-full h-1/6 mx-auto  '/>
+                    <motion.div   
+                    className='grid md: grid-cols-1 overflow-y-auto overflow-x-hidden pt-4 gap-2 md:grid-cols-2 h-5/6'>
+                        <AnimatePresence>
+                            { article.map((current,index) => (
+                                <motion.div
+                                initial={{ y: 50, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{delay:0.3 * index}}
+                                
+                                
+                                key={index}>
+                                    <LandingPageArticle   data={current}/>
+                                </motion.div>
+                                
+                            ))
+                            
+                            }
+                        </AnimatePresence>
+
+                        
+
+                    </motion.div>
+
+
+                </div>
+
+            </section>
+
+            <section
+            id="FEATURES"
+            className='w-screen min-h-screen px-4 py-4 md:py-6 md:px-40 text-white bg-dark-purple'>
+                    <h1 className='font-sloth-semibold  md:text-center leading-none  mt-4 md:mt-12  text-hl'>
+                            Features That Empower You
+                    </h1>
+                    <div className=' grid md:mt-8 grid-cols-1 hover:text-white text-black gap-2'>
+                        <HomeFeatures 
+                        title="Craft Your Stories" 
+                        description="Dive into the art of storytelling with our intuitive article creation tools.Seamlessly combine captivating poster images with engaging paragraphs to create articles that leave a lasting impact."
+                        />
+                        <HomeFeatures 
+                        title="Secure and Seamless" 
+                        description="Rest assured that your creative works are protectedin a secure environment.Our seamless interface ensures that your focus remainson crafting exceptional articles."
+                        />
+                        <HomeFeatures 
+                        title="Track Your Impact" 
+                        description="Gain insights into the performance of your articles.Measure likes, engagement, and subscriptions to refine your content strategy and understand what resonates with your audience."
+                        />
+                    </div>
+            </section>
+
+            <section className='w-screen min-h-screen h-screen px-4 py-8 md:py-20 md:px-40 flex flex-col md:flex-row gap-4 md:gap-12' id="CONNECT-API">
+                <div className='bg-pink h-3/6 md:h-full w-full p-2 flex relative items-center justify-center  md:w-3/6 rounded-3xl '>
+                    {/* <button className='bg-white/50 hover:border-4 duration-200 hover:bg-white/70 rounded-full absolute left-2 p-2 h-16 w-16'>
+                        <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className=' text-blue inline-block w-full rotate-180 '/>
+                    </button>
+                    <button className='bg-white/50 hover:border-4 duration-200 hover:bg-white/70 rounded-full absolute right-2 p-2 h-16 w-16'>
+                        <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className='  inline-block w-full '/>
+                    </button> */}
+                    <ImageCarousel images={images} />
+
+                </div>
+                <div className='w-full md:w-3/6 h-3/6 md:h-full flex flex-col gap-4 hover:cursor-default'>
+                    <h2 className='font-sloth-semibold uppercase   leading-none  mt-4 md:mt-12  text-hs'>Connect</h2>
+                    <p className='md:text-lg'>{`Are you seeking to integrate your application with a blog or personal website? Look no further - we've got you covered! Connect to our API to seamlessly access all the articles and images you've posted, absolutely free of charge. Click below to discover more!`}</p>
+                    <h5 className='font-haskoy-semibold text-pl md:text-hs text-blue md:mt-8'>What You Need to Know - </h5>
+                    <ul class="list-disc text-lg md:text-pl pl-5">
+                        <li>Basic Knowledge of JavaScript</li>
+                        <li>Crafting Fetch Requests</li>
+                        <li>Familiarity with Image Handling</li>
+                    </ul>
+
+                    {/* <Link href="" className=' mb-8 font-haskoy-extrabold text-pl w-fit bg-pink  hover:text-dark-purple' passHref>
+                        <p className='inline-block text-re'>Coming Soon  </p> 
+                        <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className=' text ml-2 inline-block w-6 '/> 
+                    </Link> */}
+                </div>
+            </section>
+
+            <section className='w-screen min-h-screen px-4 py-8  md:py-5 md:px-40 bg-purple text-white' id="CREATOR">
+                <h2 className='font-sloth-semibold uppercase   leading-none h-1/5  my-4 md:mt-12 text-center  text-hl border-b-4'>CREATOR</h2>
+                
+
+                <div className='flex flex-row flex-wrap md:flex-nowrap  gap-12 w-full mt-12  '>
+                    <div className=' justify-center items-center border-purple-accent border-4  p-2 px-6 flex flex-col '>
+                        <Image 
+                        className=' brightness-75  hover:brightness-100 self-center object-cover border-4 rounded-full h-44 w-44' 
+                        height={1600} 
+                        width={2400} src="/picture-1.webp" alt='An image of the creator of site, Zachary Coats'/>
+                        <h2 className='font-sloth-semibold uppercase text-[2rem]'>Contact</h2>
+                        <p>If interested in hiring or seeking freelance work - contact me using the information below -</p>
+                        <ul class=" text-small">
+                            <li>Email - Zachary4Coats@gmail.com</li>
+                            <li>Location - Atlanta, Georgia</li>
+                            <li> LinkedIn - <Link href="https://www.linkedin.com/in/zachary-coats-651211270/"> https://www.linkedin.com/in/zachary-coats-651211270/</Link></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 className='font-sloth-semibold uppercase text-hs  md:text-[4rem]'>Zachary Coats</h2>
+                        <p>Article Craft was created as a portfolio project for my resume to showof my technical skills. Everything from the design to the schema was done alone. This project was started with the goal of learning how to 
+                        learn to implement unit testing, but it soon grew to something a little bit more! Working on this project I have learnt many things mainly on the deployment/devops side of things; and faced many challenges.</p>
+                        <h2 className='font-sloth-semibold uppercase text-hs md:text-[4rem]'>Challenges</h2>
+                        <ul className="list-disc pl-5">
+                            <li>Test-driven development was challenging, leading to rewriting tests for better data synchronization with the database schema.</li>
+                            <li>Inadequate planning regarding data integration with the frontend.</li>
+                            <li>Encountered many issues with image sizing.</li>
+                            <li>Later achieved better formatting for images.</li>
+                            <li>Faced challenges with backend deployment, particularly with AWS Lambda server.</li>
+                            <li>Struggled with sending images to the frontend without data corruption, a problem that is still unresolved.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <motion.section id="JOIN-TODAY" 
+            className='w-screen h-screen px-4 flex flex-wrap   py-8 md:py-14 md:px-40  '
+            initial={{opacity:0.7}}
+            whileInView={{opacity: 1, paddingLeft:10}}
+            duration={{duration:1,delay: 0}} 
+            >
+            
+                
+                <Image alt="image symbolizing joining" 
+                 width={100} height={100}
+                 className="md:h-2/5 w-4/5 order-2 md:order-1 mx-auto  md:w-1/2" src="/Group.svg"/>      
+                <h2 className='font-sloth-semibold text-hs order-1 md:order-2 leading-none   md:text-hl'>JOIN <br/> ARTICLECRAFT <br/> TODAY!</h2>
+                
+         
+                <p className='  md:text-pl font-haskoy-medium order-3  '>
+                Embark on a journey of self-expression and connection. Whether you&apos;re an aspiring author, an experienced wordsmith, or simply someone who loves to read and engage with meaningful content, ArticleCraft welcomes you.
+                Sign up now to start creating, sharing, and connecting like never before.
+                </p>
+                <div className='order-4'>
+                    <p className='my-6  '>
+                    Ready to ignite your creativity? Start Crafting Your Stories With ArticleCraft Today.
+                    </p>
+                
+                    <Link href="/signup" passHref>
+                        <button 
+                        className=' bg-purple py-2 px-4 hover:scale-105 duration-500  md:text-pl rounded-3xl text-white'>
+                            GET STARTED
+                        </button>
+                    </Link>
+                    <Link className='' href="/login" passHref>
+                        <p className=''>
+                         Already Have an Account? Login
+                        </p>
+                    </Link>
+
+                </div>
+
+
+          
+              
+
+
+            </motion.section>
+
+            <section id="FOOTER">
+
+            </section>
+        </body>
+     );
 }
+
+export default LandingPage;
