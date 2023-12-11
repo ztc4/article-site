@@ -4,8 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This is an application that allows users to post, like, and search throught users articles. The users can then later even access these liked articles through the liked articles page, in the my profile section. Users can also subscribe to other users and have their articles pop up in the subscribed section page. All articles are allowed to have their own image, and multiply paragraphs. The user can choose to search for articles and users, filter throught liked articles, or even their own articles.
 
-### [FIGMA]([http://localhost:3000](https://www.figma.com/file/mjkmQIBiVHFlPSasqSnOMw/article?type=design&node-id=0-1&mode=design&t=tFWjTkFin2PkxHy4-0)
-### [Live Site]([http://localhost:3000](https://article-site-theta.vercel.app/)
+### [FIGMA](https://www.figma.com/file/mjkmQIBiVHFlPSasqSnOMw/article?type=design&node-id=0-1&mode=design&t=tFWjTkFin2PkxHy4-0)
+### [Live Site](https://article-site-theta.vercel.app/)
 
 ## TECHNOLOGY STACK
 #### Next.js,Node.js, Express.js, React, Mongodb,
