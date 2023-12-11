@@ -38,10 +38,10 @@ function LandingPage() {
                             <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className=' text-blue inline-block w-6 '/> 
                         </Link>
                         <p className=''>   
-                            Are you prepared to give life to your thoughts? Introducing ArticleCraft – 
+                         {`   Are you prepared to give life to your thoughts? Introducing ArticleCraft – 
                             the ultimate platform designed for unleashing your creativity through beautifully crafted articles.
                             Regardless of whether you are an experienced writer or just embarking on your writing journey, our user-friendly interface is tailored to empower you. It enables the creation of captivating articles that not only inspire and inform but also entertain.
-                            Welcome to a world where your ideas take shape in the most engaging way.
+                            Welcome to a world where your ideas take shape in the most engaging way.`}
                         </p>
                         <div className='h-12 w-fit font-haskoy-extrabold text-lg flex flex-row gap-4 '>
                             <Link href="/signup" passHref>
@@ -129,8 +129,8 @@ function LandingPage() {
                         <li>Familiarity with Image Handling</li>
                     </ul>
 
-                    <Link href="/api" className='mt-4 font-haskoy-extrabold text-pl w-fit  hover:text-dark-purple' passHref>
-                        <p className='inline-block'>Learn More  </p> 
+                    <Link href="" className='mt-4 font-haskoy-extrabold text-pl w-fit  hover:text-dark-purple' passHref>
+                        <p className='inline-block text-re'>Coming Soon  </p> 
                         <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className=' text ml-2 inline-block w-6 '/> 
                     </Link>
                 </div>

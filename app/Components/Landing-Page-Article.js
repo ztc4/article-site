@@ -13,7 +13,7 @@ function LandingPageArticle({data}) {
     //${data._id || ""}
     return ( 
         
-            <Link pass href={`/article/${data._id}`}  >
+            <Link  href={`/article/${data._id}`}  passHref>
                 
                 
                 <motion.div
