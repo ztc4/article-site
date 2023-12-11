@@ -18,8 +18,8 @@ Test driven development was an issue, I wrote all my test but ended up rewriting
 
 ## DeployMENT
 
-BACKEND - AWS LAMBDA
-Images are handled by AWS S3
-FRONTEND - VERCEL
+## BACKEND -  AWS LAMBDA
+#### Images  -  AWS S3, AWS LAMBDA TRIGGER FUNCTION
+#### FRONTEND - VERCEL
 
 
