@@ -25,7 +25,7 @@ function LandingPageArticle({data}) {
                         <Image 
                             width={2000} 
                             height={2000}  
-                            className="w-1/6 object-cover"
+                            className="w-1/6 rounded-xl object-fit"
                             src={`https://article-website-images.s3.amazonaws.com/${data._id}.webp`}
                             alt="Article Image"
                             loading="lazy"
@@ -37,8 +37,7 @@ function LandingPageArticle({data}) {
                         </div>
                     }
                     <div className="p-4 flex flex-col uppercase  items-start w-5/6 text-ps md:text-pl font-haskoy-semibold  ">
-                        <h4 className="  h-5/6 gap-8 line-clamp-1 text-ps md:text-pl text-center">{ data?.title || 
-                        "THE FIRST ARTICLE"}</h4>
+                        <h4 className="  h-5/6 gap-8 line-clamp-1 text-ps md:text-xl text-center">{ data.title }</h4>
                         <div className='flex flex-row w-full text-ps h-1/6  justify-between'>
                             <p className="">AUTHOR - { data?.author || 
                             "ZTC4"}</p>

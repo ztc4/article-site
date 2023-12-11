@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const ImageCarousel = ({ images }) => {
     return (
-        <div className="relative w-full p-8 ">
+        <div className="relative w-full h-full p-8 ">
             <Carousel 
                 infiniteLoop
                 autoPlay
@@ -21,12 +21,8 @@ const ImageCarousel = ({ images }) => {
                     hasNext && <CarouselButton reverse={false} onClick={clickHandler} />
                 }
             >
-                {images.map((image, index) => (
-                    <Link href={image.project ? `/projects/${image.project}` : "#"} key={index} passHref>
-                        
-                            <Image  className='rounded-xl' height={220} width={220} alt="image" src={image.image} priority={true}/>
-                      
-                    </Link>
+                {images.map((image, index) => ( 
+                            <Image key={index}  className='rounded-xl' height={220} width={220} alt="image" src={image.image} priority={true}/>
                 ))}
             </Carousel>
         </div>

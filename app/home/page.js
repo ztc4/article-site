@@ -4,15 +4,38 @@ import Link from 'next/link';
 import React from 'react'
 import LandingPageArticle from "../Components/Landing-Page-Article"
 import HomeFeatures from "../Components/home-features"
-import {motion} from "framer-motion"
+import {AnimatePresence, motion} from "framer-motion"
+import ImageCarousel from "../Components/Image-Carousel"
 
 function LandingPage() {
 
     
     let data = {title:"hello the first novel",author:"ztc4",category:"Programming",_id:"erere"}
         // Write your code here
-        
+        const images = [
+            {image:"/connect-1.svg",project:"2"},
+            {image:"/connect-1.svg",project:"2"},
+            {image:"/connect-1.svg",project:"2"}
+        ]
 
+
+        let [article,setArticle] = React.useState([])
+
+        React.useEffect(()=>{
+          getArticles()
+          
+      
+        },[])
+      
+        async function getArticles(){
+          let data =  await fetch(`https://g5mepch7r6.execute-api.us-east-1.amazonaws.com/dev/articles?search=&0`)
+          .then(res => res.json())
+          setArticle(data)
+        //   console.log(2,data)
+        //   console.log(article)
+          return data
+        
+        }
         
     return ( 
         <body className='font-haskoy-semibold overflow-x-hidden  text-black'>
@@ -37,7 +60,7 @@ function LandingPage() {
                             <p className='inline-block'>Get Started Now</p> 
                             <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className=' text-blue inline-block w-6 '/> 
                         </Link>
-                        <p className=''>   
+                        <p className=' md:text-lg'>   
                          {`   Are you prepared to give life to your thoughts? Introducing ArticleCraft – 
                             the ultimate platform designed for unleashing your creativity through beautifully crafted articles.
                             Regardless of whether you are an experienced writer or just embarking on your writing journey, our user-friendly interface is tailored to empower you. It enables the creation of captivating articles that not only inspire and inform but also entertain.
@@ -66,21 +89,29 @@ function LandingPage() {
                
                 <div className='w-full h-4/5 rounded-2xl mt-8  flex flex-col p-4 md:p-8 border-4 justify-center bg-dark-purple'>
                     <Image src="/Fire.svg" width={50} height={50} alt="arrow" className=' shadow-lg text-blue inline-block py-2 w-full h-1/6 mx-auto  '/>
-                    <div className='grid md: grid-cols-1 overflow-y-auto overflow-x-hidden gap-2 md:grid-cols-2 h-5/6'>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
-                        <LandingPageArticle data={data}/>
+                    <motion.div   
+                    className='grid md: grid-cols-1 overflow-y-auto overflow-x-hidden pt-4 gap-2 md:grid-cols-2 h-5/6'>
+                        <AnimatePresence>
+                            { article.map((current,index) => (
+                                <motion.div
+                                initial={{ y: 50, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{delay:0.3 * index}}
+                                
+                                
+                                key={index}>
+                                    <LandingPageArticle   data={current}/>
+                                </motion.div>
+                                
+                            ))
+                            
+                            }
+                        </AnimatePresence>
 
                         
 
-                    </div>
+                    </motion.div>
 
 
                 </div>
@@ -111,15 +142,16 @@ function LandingPage() {
 
             <section className='w-screen min-h-screen h-screen px-4 py-8 md:py-20 md:px-40 flex flex-col md:flex-row gap-4 md:gap-12' id="CONNECT-API">
                 <div className='bg-pink h-3/6 md:h-full w-full p-2 flex relative items-center justify-center  md:w-3/6 rounded-3xl '>
-                    <button className='bg-white/50 hover:border-4 duration-200 hover:bg-white/70 rounded-full absolute left-2 p-2 h-16 w-16'>
+                    {/* <button className='bg-white/50 hover:border-4 duration-200 hover:bg-white/70 rounded-full absolute left-2 p-2 h-16 w-16'>
                         <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className=' text-blue inline-block w-full rotate-180 '/>
                     </button>
                     <button className='bg-white/50 hover:border-4 duration-200 hover:bg-white/70 rounded-full absolute right-2 p-2 h-16 w-16'>
                         <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className='  inline-block w-full '/>
-                    </button>
+                    </button> */}
+                    <ImageCarousel images={images} />
 
                 </div>
-                <div className='w-full md:w-3/6 flex flex-col gap-4 hover:cursor-default'>
+                <div className='w-full md:w-3/6 h-3/6 md:h-full flex flex-col gap-4 hover:cursor-default'>
                     <h2 className='font-sloth-semibold uppercase   leading-none  mt-4 md:mt-12  text-hs'>Connect</h2>
                     <p className='md:text-lg'>{`Are you seeking to integrate your application with a blog or personal website? Look no further - we've got you covered! Connect to our API to seamlessly access all the articles and images you've posted, absolutely free of charge. Click below to discover more!`}</p>
                     <h5 className='font-haskoy-semibold text-pl md:text-hs text-blue md:mt-8'>What You Need to Know - </h5>
@@ -129,14 +161,14 @@ function LandingPage() {
                         <li>Familiarity with Image Handling</li>
                     </ul>
 
-                    <Link href="" className='mt-4 font-haskoy-extrabold text-pl w-fit  hover:text-dark-purple' passHref>
+                    {/* <Link href="" className=' mb-8 font-haskoy-extrabold text-pl w-fit bg-pink  hover:text-dark-purple' passHref>
                         <p className='inline-block text-re'>Coming Soon  </p> 
                         <Image src="/arrow_right_alt.svg" width={20} height={10} alt="arrow" className=' text ml-2 inline-block w-6 '/> 
-                    </Link>
+                    </Link> */}
                 </div>
             </section>
 
-            <section className='w-screen min-h-screen px-4 py-8 md:py-5 md:px-40 bg-purple text-white' id="CREATOR">
+            <section className='w-screen min-h-screen px-4 py-8  md:py-5 md:px-40 bg-purple text-white' id="CREATOR">
                 <h2 className='font-sloth-semibold uppercase   leading-none h-1/5  my-4 md:mt-12 text-center  text-hl border-b-4'>CREATOR</h2>
                 
 
